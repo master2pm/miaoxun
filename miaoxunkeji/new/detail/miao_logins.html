@@ -1,0 +1,834 @@
+<!DOCTYPE html/>
+<html lang="zh-cn">
+
+<head lang="en">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link href="../login/common.css" rel="stylesheet">
+    <link href="../login/index.css" rel="stylesheet">
+    <!--<link href="../login/header.css" rel="stylesheet">-->
+
+
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="../login/swiper.min.css">
+    <link rel="stylesheet" href="../../static/layui/css/layui.css"  media="all">
+  <link rel="stylesheet" href="../../static/layui/css/layui.css"  media="all">
+    <!-- Demo styles -->
+    <style>
+    [v-cloak]{display: none;}
+        html,
+        body {
+            position: relative;
+            height: 100%;
+        }
+
+        body {
+            background: #eee;
+            font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            color: #000;
+            margin: 0;
+            padding: 0;
+        }
+
+        .swiper-container {
+            width: 100%;
+            height: 100%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+            /* Center slide text vertically */
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+        }
+
+        .swiper-pagination-bullet {
+            background: transparent;
+            opacity: 1;
+            border: 3px solid #D2D6D6;
+            width: 9px;
+            height: 9px;
+        }
+
+        .swiper-pagination-bullet-active {
+            border: none;
+            display: none !important;
+            background: white !important;
+            width: 15px;
+            height: 15px;
+        }
+
+        .hong {
+            border: 2px solid #BF4040 !important;
+        }
+     [v-cloak] {   display: none;}   
+    </style>
+</head>
+
+<body style="min-width:1024px;overflow-x: scroll;min-height:800px;overflow-y: hidden;">
+    <!-- Swiper -->
+    <div class="containers " v-cloak>
+
+        <div style="z-index:1000;position:fixed;width:1024px;top:15px;" class="spjz ">
+            <div style="width:463px;height:55px;background:url(../tu-login/1.png) no-repeat;">
+                <input type="text" @keyup.enter="golocation($event)" v-model="search" class="cF6 none  f18 " placeHolder="寻找苗木？" style="background:none;width:340px;height:100%;padding:10px 0 10px 55px;">
+                <img @click="golocation($event)" class="rf cursor" @mouseenter="index0=true" @mouseleave="index0=false" :src="index0==false?'../tu-login/3.png':'../tu-login/3+.png'" alt="">
+            </div>
+            <!--登录注册按钮-->
+             <img v-show="activeIndex!=0" @click="toindex0($event,'denglu')" src="../tu-login/5.png" alt="" class="cursor index0d " style="position:absolute;right:120px;top:0;">
+             <img v-show="activeIndex!=0" @click="toindex0($event,'zhuce')"    src="../tu-login/6.png" alt="" class="cursor index0z"   style="position:absolute;right:0;top:0;">
+        </div>
+
+        <div class="swiper-container  ">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide slide1" style="background:url(../tu-login/28.jpg) no-repeat;background-size:100% 100%;">
+                    <!--模块1-->
+                   <!--  <span class="f18 spjz center" style="color:white;bottom:25px;">什么是苗讯科技？</span> -->
+                    <div style="margin:0 auto;width:1024px;height:975px;" class="">
+                        <div style="margin:0 auto;width:1024px;margin-top:180px;" class="">
+                            <div class="" style="margin:0 auto;width:300px;position:relative;">
+                                <img class="" src="../tu-login/8.png" alt="" >
+                                <!-- <p class="f50 cF6 center" style="padding-left: 54px;">苗讯科技</p> -->
+                                <p class="f15 cF6 center" style="margin-top:5px;">由苗木人创建,为了苗木人</p>
+                                <p class="f15 cF6 center">无忧买卖,和谐共生</p>
+<!--1.点击登录的按钮的时候-->
+                                <div v-show="denglu==true&&wangji==false" class="rad bai" :class="{hong:error0==true}" style="border:2px solid white;margin:15px 0;width:280px;height:80px;padding:10px;position:relative;">
+                                    <input @focus="focus"  @keyup.enter="denglus($event)" v-model="mobile" type="text" class=" none  f18 " placeHolder="手机号码" style="padding:5px 0 15px 0;border-bottom:1px solid #D2D6D6;background:none;width:100%;height:49%;">
+                                    <input @focus="focus"  @keyup.enter="denglus($event)" v-model="password" type="password" class=" none  f18 " placeHolder="密码" style="background:none;width:100%;padding:13px 0 5px 0;height:50%;">
+                                    <div v-show="error==true" style="background:#BF4040;width:76px;height:84px;padding:10px;position:absolute;right:-95px;top:-2px;" class="f12 cF6">
+                                        您输入的手机号或密码有误请重新输入。
+                                    </div>
+                                </div>
+<!-- 2.密码 -->
+                                <div v-show="zhuce==true&&pwd==true&&wangji==false" class="rad bai" :class="{hong:error4==true}" style="border:2px solid white;margin:15px 0;width:280px;height:80px;padding:10px;position:relative;">
+                                    <input @focus="focus3" @keyup.enter="zhuces($event)" v-model="oldpwd" type="password" class=" none  f15 " placeHolder="请输入您的密码" style="padding:5px 0 15px 0;border-bottom:1px solid #D2D6D6;background:none;width:100%;height:49%;">
+                                    <input @focus="focus3" @keyup.enter="zhuces($event)" v-model="newpwd" type="password" class=" none  f15 " placeHolder="请再次输入您的密码" style="background:none;width:100%;padding:15px 0 5px 0;height:49%;">
+                                    <div v-show="zhuceError4==true" style="background:#BF4040;width:76px;height:84px;padding:10px;position:absolute;right:-95px;top:-2px;" class="f12 cF6">
+                                       您输入两次的密码不相同。
+                                    </div>
+                                </div>
+
+<!-- 3.注册 -->
+                                <div v-show="zhuce==true&&pwd==false&&wangji==false" style="position:relative;">
+                                    <ul class="rad bai" style="border:2px solid white;margin:15px 0;width:300px;height:150px;position:relative;">
+                                        <li style="position:relative;" :class="{hong:zhuceError1==true}">
+                                            <input @keyup.enter="nexts($event)" v-model="name1" type="text" class=" none  f15 " placeHolder="请输入您的名称" style="padding:15px 10px;background:none;width:100%;height:50px;">
+                                            <span style="position:absolute;bottom:0;left:10px;width:280px;border-top:1px solid #D2D6D6;" class=""></span>
+                                        </li>
+                                        <li style="position:relative;" :class="{hong:zhuceError2==true}">
+                                            <input @focus="focus1" @keyup.enter="nexts($event)" v-model="phone1" type="text" class=" none  f15 " placeHolder="请输入您的手机号码" style="background:none;width:100%;padding:15px 10px;height:50px;">
+                                            <span style="position:absolute;bottom:0;left:10px;width:280px;border-top:1px solid #D2D6D6;" class=""></span>
+                                        </li>
+                                        <li style="position:relative;" class="overflow" :class="{hong:zhuceError3==true}">
+                                            <input @focus="focus2" @keyup="tests($event)" @keyup.enter="nexts($event)" v-model="vertify" type="text" class=" none  f15 lf" placeHolder="请输入4位验证码" style="background:none;width:60%;padding:15px 10px;height:45px;">
+
+                                          <span class="rf " style="width:100px;height:33px;margin-top: 10px;margin-right: 10px;">
+                                                  <img @click="daojishis($event)" v-show="daojishi!=true" :src="phone1.length==11&&resend==false?'../tu-login/12.png':resend==false?'../tu-login/11.png':'../tu-login/13.png'" alt="" class="cursor" >
+                                                  <span v-show="time==true" class="f13 cF6 center rf" style="line-height: 33px;width:100px;height:33px;background:url(../tu-login/14.png) no-repeat;">
+                                                     等待{{times}}秒
+                                                  </span>
+                                          </span>
+                                           
+                                        </li>
+
+
+
+                                    </ul>
+
+
+<!--注册提示框-->
+                                   <div v-show="zhuceError0==true" id="zhucetrips" style="background:#BF4040;width:76px;height:135px;padding:10px;position:absolute;right:-97px;top:0;" class="f12 cF6 left">
+                                        
+                                    </div>
+                                   
+                                </div>
+<!-- 忘记密码 -->
+                                <p v-show="denglu==true&&wangji==false" class="f15 cF6 right cursor" @click="wangji=true" style="width:300px;margin:0 auto;" >忘记密码？</p>
+    <div class="relative">
+        
+  
+           <ul v-show="wangji==true&&xiayibu==false" class="rad bai" style="border:2px solid white;margin:15px 0;width:300px;height:100px;position:relative;">
+                                       
+                                        <li style="position:relative;" :class="{hong:zhuceError8==true}">
+                                            <input  @focus="focus8"  v-model="phone8" type="text" class=" none  f15 "  placeHolder="手机号码" style="background:none;width:100%;padding:15px 10px;height:50px;">
+                                            <span style="position:absolute;bottom:0;left:10px;width:280px;border-top:1px solid #D2D6D6;" class=""></span>
+                                        </li>
+                                        <li style="position:relative;" class="overflow" :class="{hong:zhuceError9==true}">
+                                            <input @keyup="test8" @focus="focus9" v-model="vertify80" type="text" class=" none  f15 lf" placeHolder="请输入4位验证码" style="background:none;width:60%;padding:15px 10px;height:45px;">
+
+                                          <span class="rf " style="width:100px;height:33px;margin-top: 10px;margin-right: 10px;">
+                                                 <img @click="daojishis8($event)" v-show="daojishi8!=true" :src="phone8.length==11&&resend8==false?'../tu-login/12.png':resend8==false?'../tu-login/11.png':'../tu-login/13.png'" alt="" class="cursor" >
+                                                  <span v-show="time8==true" class="f13 cF6 center rf" style="line-height: 33px;width:100px;height:33px;background:url(../tu-login/14.png) no-repeat;">
+                                                     等待{{times8}}秒
+                                                  </span>
+                                          </span>
+                                           
+                                        </li>
+
+
+
+
+            </ul>
+
+           <ul v-show="xiayibu==true"  :class="{hong:zhuceError8s==true}" class="rad bai" style="border:2px solid white;margin:15px 0;padding:0 10px;width:300px;height:100px;position:relative;">
+                                       
+                                        <li style="position:relative;" >
+                                            <input @keyup.enter="zhuces8($event)" v-model="oldpwd8" type="password" class=" none  f15 " placeHolder="请输入您的密码" style="padding:5px 0 7px 0;border-bottom:1px solid #D2D6D6;background:none;width:100%;height:49%;">
+                                        </li>
+                                        <li style="position:relative;" >
+                                            <input  @focus="focus38" @keyup.enter="zhuces8($event)" v-model="newpwd8" type="password" class=" none  f15 " placeHolder="请再次输入您的密码" style="background:none;width:100%;padding:8px 0 5px 0;height:49%;">
+                                           
+                                        </li>
+                                        
+ 
+                                   
+
+
+            </ul>
+            <div v-show="wangjiError==true" style="background:#BF4040;width:76px;height:84px;padding:10px;position:absolute;right:-98px;top:125px;" class="wangjitrip f12 cF6 left">
+                                        
+                                    </div>
+              </div>
+            <p  v-show="wangji==true" style="color:white;" class="right f15">
+            <span class="cursor" @click="freeZ">免费注册</span>
+            <span style="margin-left:20px;" class="cursor"  @click="freeD">登录</span>
+            <!-- 下一步 -->
+             <img @click="xiayibus()" v-show="wangji==true&&xiayibu==false" src="../tu-login/31.png" alt="" style="margin-top:20px;" class="cursor" >
+             <!-- 完成 -->
+             <img @click="zhuces8()" v-show="wangji==true&&xiayibu==true"  src="../tu-login/32.png" alt="" style="margin-top:20px;" class="cursor" >
+            </p>
+                                    
+
+
+
+
+
+                                <!--登录注册-->
+                                <img v-show="zhuce!=true&&wangji==false" @click="denglus($event)" class="cursor" @mouseenter="index1=true" @mouseleave="index1=false" :src="index1==false?'../tu-login/4.png':'../tu-login/4+.png'" alt="" style="margin:15px 0 10px 0;">
+                                <img v-show="zhuce!=true&&wangji==false" @click="nexts($event)" class="cursor" @mouseenter="index2=true" @mouseleave="index2=false" :src="index2==false?'../tu-login/7.png':'../tu-login/7+.png'" alt="" style="margin-bottom:50px;">
+                                
+                                <!--下一步-->
+                                <img v-show="zhuce==true&&pwd==false" @click="nexts($event)" class="cursor" src="../tu-login/20.png" alt="" style="margin:15px 0 10px 0;">
+                                <!--完成注册-->
+                                <img v-show="zhuce==true&&pwd==true" @click="zhuces($event)" class="cursor" src="../tu-login/19.png" alt="" style="margin:15px 0 10px 0;">
+                                <!--登录-->
+                                <img v-show="zhuce==true" @click="denglus($event)" class="cursor" @mouseenter="index1=true" @mouseleave="index1=false" :src="index1==false?'../tu-login/4.png':'../tu-login/4+.png'" alt="" style="margin:15px 0 10px 0;">
+                                 <!--app-->
+                                <img class="cursor" v-show="zhuce!=true&&wangji==false" @mouseenter="index3=true" @mouseleave="index3=false" :src="index3==false?'../tu-login/9.png':'../tu-login/9+.png'" alt="">
+                                <img class="cursor" v-show="zhuce!=true&&wangji==false" @mouseenter="index4=true" @mouseleave="index4=false" :src="index4==false?'../tu-login/10.png':'../tu-login/10+.png'" alt="" style="margin-left:30px ;">
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="swiper-slide slide1" style="display:none;background:url(../tu-login/29.png) repeat;">
+                    <!--模块2-->
+                    <div style="margin:0 auto;width:1024px;height:1080px;" class=" left ">
+                        <img src="../tu-login/8.png" alt="" class=" " style="margin:120px 0 90px 0;">
+                        <p class="f60 cF6 left">无忧买卖,和谐共生</p>
+                        <p class="f60 cF6 left">苗木人所创建的一个</p>
+                        <p class="f60 cF6 left" style="margin-bottom:40px;">交易平台。</p>
+                        <p class="f26 cF6 left">苗讯是集合国内大批好苗，提供方便苗农的计算服务边东三后</p>
+                        <p class="f26 cF6 left">福哦少烧饭方式还不能够撒不哦后不</p>
+                        <p class="f26 cF6 left">哦表嫂或撒谎佛那好是奥鹏弄啊女更快乐三何必好撒偶</p>
+                        <p class="f26 cF6 left">萨斯士比亚红四。</p>
+                    </div>
+                </div>
+                <div class="swiper-slide slide1" style="display:none;background:url(../tu-login/24.png) repeat;">
+                    <!--模块3-->
+                    <div style="margin:0 auto;width:1024px;height:1080px;" class=" left ">
+                        <p class="f60 cF6 left" style="margin-top:130px;">我们还会不定时的推出</p>
+                        <p class="f60 cF6 left" style="margin-bottom:45px;">新活动。</p>
+                        <p class="f26 cF6 left">苗讯是集合国内大批好苗，提供方便苗农的计算服务边东三后</p>
+                        <p class="f26 cF6 left" style="margin-bottom:100px;">福哦少烧饭方式还不能够撒不哦后不。</p>
+                        <img src="../tu-login/25.png" alt="" class=" " >
+                         <img @click="golocation1($event)" src="../tu-login/15.png" alt="" class="rf cursor" style="margin-right:70px;" >
+                    </div>
+
+                </div>
+                <div class="swiper-slide slide" style="display:none;background:url(../tu-login/23.png) repeat;">
+                    <!--模块4-->
+                    <div style="margin:0 auto;width:1024px;height:1080px;" class=" left ">
+                        <p class="f60 cF6 left" style="margin-top:130px;">享受买卖角色切换的体验，</p>
+                        <p class="f60 cF6 left" style="margin-bottom:45px;">做一把真正的地主。</p>
+                        <p class="f26 cF6 left">苗讯是集合国内大批好苗，提供方便苗农的计算服务边东三后</p>
+                        <p class="f26 cF6 left" style="margin-bottom:100px;">福哦少烧饭方式还不能够撒不哦后不</p>
+                        <img src="../tu-login/16.png" alt="" class=" " style="margin-right:395px;">
+                        <img src="../tu-login/17.png" alt="" class=" " >
+                         <img src="../tu-login/27.png" alt="" class=" " style="margin-right:46px;margin-top:15px;">
+                          <img src="../tu-login/26.png" alt="" class=" " style="margin-top:15px;">
+                    </div>
+                </div>
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination" style="left:30px;width:100px;"></div>
+        </div>
+
+        <!--成功登录的弹出框-->
+        <div v-show="success==true" style="background:url(../tu-login/30.png) no-repeat;background-size:100% 100%;left:0;top:0;position:fixed;z-index:1001;width:100%;height:100%;">
+            <div class=" left" style="margin:0 auto;width:1024px;">
+                <p class="f50 cF6 left" style="margin-top:230px;">打开通知？</p>
+                <p class="f26 cF6 left" style="margin-top:30px;">我们可以在有人给您发消息或有其他</p>
+                <p class="f26 cF6 left" style="margin-bottom:60px;">重要事件时以桌面弹窗通知您。</p>
+                <img @click="golocation1($event)" src="../tu-login/21.png" alt="" class=" cursor" style="display:block;margin-bottom:10px;">
+                <img @click="golocation1($event)" src="../tu-login/18.png" alt="" class=" cursor">
+            </div>
+        </div>
+    </div>
+
+    <script src="../common/jquery-1.11.3.js"></script>
+    <script src="../../static/layui/layui.js"></script>
+    <script src="https://cdn.bootcss.com/babel-polyfill/6.23.0/polyfill.min.js"></script>
+    <script src="../common/vue2.js"></script>
+    <script src="../common/common.js"></script>
+    <script src="../common/common.js"></script>
+    <!--<script src="https://unpkg.com/vue-router/dist/vue-router.js 
+
+"></script>-->
+    <script src="https://cdn.bootcss.com/vue-resource/1.3.1/vue-resource.js 
+
+"></script>
+
+<!-- 自己改过的压缩swipe文件 -->
+    <script src="../login/mySwiper.jquery.min.js"></script>
+    <!-- Initialize Swiper -->
+    <script>
+        var vm = new Vue({
+            el: '.containers',
+            data: {
+                activeIndex:'',//第几个是当前的
+                index0: false, //控制搜索按钮的
+                index1: false, //控制登录按钮的
+                index2: false, //控制注册按钮的
+                index3: false, //控制app按钮的
+                index4: false, //控制app按钮的
+                denglu: false, //控制登录页面的手机和密码的显示和隐藏
+                zhuce: false,
+                error: false, //输入的手机号或密码有误请重新输入。
+                error0: false, //点击登录的时候手机或者号码没输入
+                success: false, //登录成功的弹出框
+                sessiontoken: '',
+                mobile: '', //手机号码
+                password: '', //密码
+                name1: '',
+                search:'',//
+                phone1: '',
+                vertify: '',
+                daojishi:false,
+                zhuceError1: false,//请输入您的名称的红色边框线
+                zhuceError2:false,//请输入您的手机号码的红色边框线
+                zhuceError3:false,//请输入四位验证码的红色边框线
+                zhuceError4:false,//您输入两次的密码不相同  的警告框
+                zhuceError0: false,//注册统一的提示框
+                error4:false,//您输入两次的密码不相同 的红色边框线
+                times:60,
+                time:false,
+                yzm:'',
+                interval:'',
+                pwd:false,//新旧密码的图库
+                resend:false,//重新发送
+                oldpwd:'',
+                newpwd:'',
+                 oldpwd8:'',
+                newpwd8:'',
+                wangji:false,//忘记的index
+                zhuceError8:false,
+                zhuceError9:false,
+                 zhuceError8s:false,
+                zhuceError9s:false,
+                wangjiError:false,
+                vertify8:'',//后台的
+                vertify80:'',//输入的
+                daojishi8:'',
+                phone8:'',
+                resend8:false,
+                time8:false,
+                times8:60,
+                xiayibu:false,
+                isok:false,
+                SUS:false,//下一步的
+                zhuceError9s:false
+               
+
+
+            },
+            //在创建vue实例时，引入路由
+            //  router: router,
+            // store: store,
+            //components:{"headers":headers,"footers":footers},
+            methods: {
+                freeZ(){
+                    var that=this
+                          this.wangji=false
+                         that.toindex0('','zhuce')
+   
+                   
+                },
+                 freeD(){
+                     var that=this
+      this.wangji=false
+                         that.toindex0('','denglu')
+                  
+                },
+// 点击完成
+                zhuces8(){
+                    if(this.newpwd8.length!=0&&this.oldpwd8.length!=0&&this.newpwd8==this.oldpwd8){
+                        // 发请求修改密码
+                        $.post(Boss+"forget",{'mobile':this.phone8,"verify":this.vertify80,'password':this.newpwd8},function(data){
+                              console.log(data)
+                              if(data.status==1){
+                                location.reload()
+                              }
+
+                        })
+
+                    }else{
+                        if(this.newpwd8.length!=0&&this.oldpwd8.length!=0){
+                            this.zhuceError8s=true//边框线
+                            this.wangjiError=true//提示框
+                        $(".wangjitrip").html("您输入两次的密码不相同。")
+                        }else{
+                             this.zhuceError8s=true//边框线
+                            this.wangjiError=true//提示框
+                        $(".wangjitrip").html("密码不能为空")
+                            
+                    }
+                        }
+                },
+
+                xiayibus(){
+                    if(this.vertify80==this.vertify8&&(this.phone8.length==11)&&this.zhuceError8==false){
+                          this.xiayibu=true
+                    }
+                    
+                },
+                // 忘记密码的验证码输入框检测
+                test8(){
+                    var that=this
+                    if(this.vertify80.length==4){
+                          // 验证码校验
+                                     $.get(Boss+'verify/checker',{'mobile':that.phone8,'verify':that.vertify80},function(data){
+                          if(data.results.success==0){
+                            that.zhuceError9=true//边框线
+                            that.wangjiError=true//提示框
+                             $('.wangjitrip').html("您输入的手机验证码不正确请您确认后在重试。") 
+                                          }else{
+                            that.vertify8=that.vertify80
+                            that.zhuceError8=false//边框线
+                            that.wangjiError=false//提示框
+                        }
+                                          
+                                     })
+                       
+                    }
+                },
+                // 忘记密码的验证码
+                daojishis8(e){
+                    var that=this
+                    // 绿色的方式验证码
+                     if($(e.currentTarget).attr("src",'../tu-login/12.png')){
+                        
+                         $.post(Boss+"forget/verify",{'mobile':this.phone8
+                            // ,'isDebug':1
+                        },function(data) {
+                             console.log(data)
+                             if(data.status==0&&data.results.message=="该帳號未注册"){
+                                that.zhuceError8=true
+                                that.wangjiError=true
+                                $('.wangjitrip').html("该账户未注册")
+                             }else if(data.results.message=="短信已發送,請在60秒後重試"){
+                                      that.wangjiError=true
+                                    $(".wangjitrip").html("短信已发送,请在60秒后重试")
+                                    
+                                } else if (data.status == 1) {
+                                    // 2.成功
+                                     that.time8=true
+                                     that.daojishi8=true
+                                     // // 验证码校验
+                                     // $.get(Boss+'verify/checker',{'mobile':that.phone8,'verify':that.vertify80},function(data){
+                                     //      if(data.results.success==0){
+                                                
+                                     //      }else{
+                                     //        that.vertify8=that.vertify80
+                                     //      }
+                                     // })
+                                    
+                                  // that.yzm=data.results.code
+           
+                                                              that.interval=setInterval(function(){
+                                                                        that.times8--
+                                                                        if(that.times8==0){
+                                                                              clearInterval(that.interval8)
+                                                                              that.resend8=true
+                                                                              that.time8=false
+                                                                               that.daojishi8=false
+                                                                               that.times8=60
+
+                                                                        }
+                                                                  },1000)
+             
+                                   
+                                }
+                         })
+                     }
+                },
+                // 登录验证是错误后这个时候两个input获取焦点就让红色警告消失
+                focus(){
+                    this.error0=false
+                    this.error=false
+                },
+                // 注册的手机号码有误
+                focus1(){
+                    this.zhuceError2=false//红色的边框线
+                    this.zhuceError0=false//提示框
+                      //alert(1)
+                },
+                // 
+                 // 注册的验证码
+                focus2(){
+                    this.zhuceError3=false//红色的边框线
+                    this.zhuceError0=false//提示框
+                    //alert(2)
+                },
+                  // 密码有误
+                focus3(){
+                    this.zhuceError4=false
+                    this.error4=false
+                 },
+                   // 忘记密码手机有误
+                focus8(){
+                    this.zhuceError8=false//边框线
+                   this.wangjiError=false//提示框
+                 },
+                   // 忘记密码手机验证码有误
+                focus9(){
+                   this.zhuceError9=false//边框线
+                   this.wangjiError=false//提示框
+                 },
+                  // 密码两次相同有误
+                focus38(){
+                            this.zhuceError8s=false//边框线
+                            this.wangjiError=false//提示框
+                 },
+                //寻找苗木的输入框检测到长度大于0立马跳转到详情页
+                golocation:function(e){
+                    if(this.search.length>0){
+                         location.href = '../parent/index.html'
+                         window.localStorage.setItem('keywords',this.search)
+                    }else{
+                        location.href = '../parent/index.html'
+                         window.localStorage.setItem('keywords','')
+                    }
+                      
+                },
+                   golocation1:function(e){
+                   
+                         location.href = '../parent/index.html'
+                    
+                      
+                },
+             toindex0:function(e,item){
+               
+                     swiper.slideTo(0, 1000, false);//切换到第一个slide，速度为1秒
+                     if(item=='denglu'){
+                            this.denglus()
+                            this.activeIndex=0
+                     }else{
+                             this.nexts()
+                             this.activeIndex=0
+                     }
+             },
+              zhuces:function(){
+                var that=this
+                  if(this.oldpwd==this.newpwd){
+                    this.zhuceError4=false
+                    this.error4=false
+                    //alert(this.verify)
+                     //。。。。。 $.post("http://m1-ymboss.leanapp.cn/api/v1/sign",{
+                          $.post(Boss+"sign",{
+                            "mobile":this.phone1,
+                            "password":this.oldpwd,
+                            "verify":this.vertify
+                          },function(data){
+                            console.log(data)
+                            if(data.status==1){
+                              that.success=true
+                                user_id=data.results.sessiontoken
+                                    user_phone=data.results.objectId
+
+                                             var user=window.localStorage.getItem('default_group')  
+                                                       //第一部分null 
+                                                               if(user!=null){
+                                                                   var has=0//默认是没有登录的
+                                                                   user1=JSON.parse(user)
+                                                                   for (var key in user1) {
+                                                                       // 1.如果有记录也有登录过
+                                                                       if(data.results.objectId==key){
+                                                                           has=1
+                                                                            console.log('曾经登录过')
+                                                                       }
+                                                                   }
+
+                                                               if(has==0){
+                                                                   // 2.如果有记录但是没有登录过：默认是关的
+                                                                   user1[data.results.objectId]=0
+                                                                   window.localStorage.setItem('default_group',JSON.stringify(user1))
+                                                                   
+                                                               }
+                                                               }else{
+                                                        //第二部分不为null
+                                                                    var b={}
+                                                                    b[data.results.objectId]=0
+                                                                    window.localStorage.setItem('default_group',JSON.stringify(b))
+                                                               }
+                                                              
+                                      
+                                                        // 第三部分统一设置sessiontoken
+                                                             window.localStorage.setItem('user_id',user_id)   
+                            }
+                          })
+                  }else{
+                    this.zhuceError4=true
+                    this.error4=true
+                  }
+              },
+              // 检测验证码是否正确
+              tests:function(e){
+                var that=this
+                //alert(1)
+                if(this.vertify.length==4){
+                                     // 验证码校验
+                                     $.get(Boss+'verify/checker',{'mobile':that.phone1,'verify':that.vertify},function(data){
+                                          if(data.results.success==0){
+                                                 that.zhuceError3=true//边框线
+                                                that.zhuceError0=true//提示框
+                                                $("#zhucetrips").html("验证码不正确,请重新输入")
+                                          }else{
+                                            that.zhuceError3=false//边框线
+                                            that.zhuceError0=false//提示框
+                                            that.SUS=true
+                                            //that.yzm=that.vertify
+                                          }
+                                     })
+                }
+                //alert(this.vertify)
+                   // if(this.yzm==this.vertify){
+                   //    console.log("验证码正确")
+                   //    this.zhuceError3=false//边框线
+                   //     this.zhuceError0=false//提示框
+                   // }else{
+                   //     console.log("验证码bu正确")
+                   //     this.zhuceError3=true//边框线
+                   //     this.zhuceError0=true//提示框
+                   //     $("#zhucetrips").html("验证码不正确,请重新输入")
+                       
+                   // }
+              },
+              // 点击发送验证码
+              daojishis:function(e){
+                var that=this
+                if(this.phone1.length==11){
+                 //  。。。。。。http://m1-ymboss.leanapp.cn/api/v1/
+                        $.post(Boss+"sign/verify", {
+                                "mobile": this.phone1
+                                // ,"isDebug": 1
+                            }, function(data) {
+                                console.log(data)
+                                // 1.不成功
+                                if (data.status == 0) {
+                                    //  手机号码有问题 
+                                    if(data.results.message=="该帳號已注册"){
+                                     that.zhuceError0=true
+                                     that.zhuceError2=true
+                                    $("#zhucetrips").html("该手机号码已被注册")
+                                }else if(data.results.message=="短信已發送,請在60秒後重試"){
+                                        that.zhuceError0=true
+                                    $("#zhucetrips").html("短信已发送,请在60秒后重试")
+                                }
+                                    
+                                } else if (data.status == 1) {
+                                    // 2.成功
+                                     that.time=true
+                                     that.daojishi=true
+                                     //        // 验证码校验
+                                     // $.get(Boss+'verify/checker',{'mobile':that.phone1,'verify':that.vertify},function(data){
+                                     //      if(data.results.success==0){
+                                                
+                                     //      }else{
+                                     //        that.yzm=that.vertify
+                                     //      }
+                                     // })
+           
+                                                              that.interval=setInterval(function(){
+                                                                        that.times--
+                                                                        if(that.times==0){
+                                                                              clearInterval(that.interval)
+                                                                              that.resend=true
+                                                                              that.time=false
+                                                                               that.daojishi=false
+                                                                               that.times=60
+
+                                                                        }
+                                                                  },1000)
+             
+                                   
+                                }
+
+                            })
+                 
+                }
+               
+              },
+
+                // 点击登录的按钮
+                denglus: function(e) {
+                    var that = this
+                    //1.点击的登录是含有手机和密码的发请求
+                    if (this.denglu == true) {
+                        if (this.mobile != '' && this.password != '') {
+                            // 。。。。。http://m1-ymboss.leanapp.cn/api/v1/
+                            $.post(Boss+"login", {
+                                "mobile": this.mobile,
+                                "password": this.password
+                            }, function(data) {
+                                console.log(data)
+                                // 1.不成功
+                                if (data.status == 0) {
+                                    that.error0 = true
+                                    that.error = true
+                                } else if (data.status == 1) {
+                                    // 2.成功
+                                    that.error0 = false
+                                    that.error = false
+                                    that.success = true
+                                    user_id=data.results.sessiontoken
+                                    user_phone=data.results.objectId 
+                                                               var user=window.localStorage.getItem('default_group')  
+                                                       //第一部分null 
+                                                               if(user!=null){
+                                                                   var has=0//默认是没有登录的
+                                                                   user1=JSON.parse(user)
+                                                                   for (var key in user1) {
+                                                                       // 1.如果有记录也有登录过
+                                                                       if(data.results.objectId==key){
+                                                                           has=1
+                                                                            console.log('曾经登录过')
+                                                                       }
+                                                                   }
+
+                                                               if(has==0){
+                                                                   // 2.如果有记录但是没有登录过：默认是关的
+                                                                   user1[data.results.objectId]=0
+                                                                   window.localStorage.setItem('default_group',JSON.stringify(user1))
+                                                                   
+                                                               }
+                                                               }else{
+                                                        //第二部分不为null
+                                                                    var b={}
+                                                                    b[data.results.objectId]=0
+                                                                    window.localStorage.setItem('default_group',JSON.stringify(b))
+                                                               }
+                                                              
+                                      
+                                                        // 第三部分统一设置sessiontoken
+                                                             window.localStorage.setItem('user_id',user_id)             
+
+                                }
+
+                            })
+                        } else {
+                            this.error0 = true
+                        }
+
+                    } else {
+                        //2.点击的登录是不含有手机和密码的发请求  
+                        this.zhuce=false
+                        this.denglu = true
+                    }
+
+                },
+                // 点击下一步的按钮
+                nexts: function(e) {
+                  var that=this
+                   //1.点击的注册是含有手机和姓名的发请求
+                  if(this.zhuce==true){
+                    if(this.phone1 == '' && this.name1 == ''&&this.vertify==''){
+                    return
+                  }
+                        if(this.phone1 != '' && this.name1 != ''&&this.SUS==true){
+                            that.SUS=false
+                           this.zhuceError1=false
+                            this.zhuceError2=false
+                             this.zhuceError3=false
+                              this.zhuceError0=false
+                          //  注册
+                          this.pwd=true
+                        }else{
+                           this.zhuceError0=true
+                           if(this.phone1==''){
+                              this.zhuceError2=true
+                               this.zhuceError1=false
+                                this.zhuceError3=false
+                           }else if(this.name1==''){
+                              this.zhuceError1=true
+                               this.zhuceError2=false
+                                this.zhuceError3=false
+                           }else if(this.vertify==''){
+                              this.zhuceError3=true
+                               this.zhuceError1=false
+                                this.zhuceError2=false
+                           }
+                        }
+                  }else{
+                    //2.点击的注册是不含有手机和姓名的发请求  
+                      this.denglu=false
+                      this.zhuce = true
+                  }
+                  
+
+                }
+            },
+            mounted: function() {
+
+            }
+
+        })
+
+        swiper = new Swiper('.swiper-container', {
+            pagination: '.swiper-pagination',
+            direction: 'vertical',
+            slidesPerView: 1,
+            paginationClickable: true,
+            spaceBetween: 30,
+            // loop: true,
+            // loopedSlides:4,
+            mousewheelControl: true,
+            onSlideChangeEnd: function(swiper){
+              //alert(swiper.activeIndex)
+            vm.activeIndex=swiper.activeIndex //切换结束时，告诉我现在是第几个slide
+    }
+        });
+
+    </script>
+
+</body>
+
+</html>

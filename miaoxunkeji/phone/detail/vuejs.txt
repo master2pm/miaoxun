@@ -1,0 +1,52 @@
+var vm = new Vue({
+        el: '.containers',
+        data: {
+          tree:'',
+          wher:'',
+          group:'',
+          nowid:''
+        },
+        store: store,
+        components:{},
+        methods:{
+          yi:function(){
+              $("body").scrollTop(670);
+          }
+        },
+        mounted:function(){
+          var that = this;
+          setTimeout(that.yi(),3000);
+          var where = {groundId: "59db3ad39545040067f21ec6"};
+          $.get(this.$store.state.Boss+"/tree?where="+encodeURI(JSON.stringify(where)),function(data){
+            that.wher = data;
+            console.log(data)
+            console.log(data.results.data[0])
+            that.tree = data.results.data[0]
+            console.log(that.tree.mu_photo[0].url)
+            that.group=that.tree.mu_ground.group
+            that.nowid = data.results.data[0].objectId;
+
+          });
+          setTimeout(function(){
+            var map = new BMap.Map("map_canvas");          // 创建地图实例
+
+              var initLat = that.tree.mu_ground.gg_address.point.latitude;
+              var initLng = that.tree.mu_ground.gg_address.point.longitude;
+              if(initLat==''){
+                initLat=116.404
+              }
+              if(initLat==''){
+                initLat=39.915
+              }
+              console.log("缓存获取坐标")
+              console.log(initLat,initLng)
+              var point = new BMap.Point(initLng, initLat);  // 创建点坐标
+              map.centerAndZoom(point, 11);                 // 初始化地图，设置中心点坐标和地图级别
+              map.enableScrollWheelZoom();                            // 启用滚轮放大缩小
+              mk = new BMap.Marker(point);
+              var myIcon = new BMap.Icon("../tu-mpz/1-68.png", new BMap.Size(29,37));
+              mk = new BMap.Marker(point,{icon:myIcon});
+              map.addOverlay(mk);//把点添加到地图上
+          },10)
+        }
+      })

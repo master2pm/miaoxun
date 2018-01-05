@@ -1,0 +1,103 @@
+<!DOCTYPE html/>
+<html lang="zh-cn">
+
+	<head lang="en">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title></title>
+		<!-- 头像截图 -->
+		<!-- <link href="../common/photo/bootstrap.min.css" rel="stylesheet"> -->
+		<link href="../common/photo/cropper.min.css" rel="stylesheet">
+		<link href="../common/photo/main.css" rel="stylesheet">
+		<link href="../me/common.css" rel="stylesheet">
+		<!-- <link href="../common/swiper.min.css" rel="stylesheet"> -->
+		<link href="../menu/common.css" rel="stylesheet">
+		<link href="../common/common.css" rel="stylesheet">
+		<link href="../menu/index.css" rel="stylesheet">
+		<link href="../menu/header.css" rel="stylesheet">
+		<link href="../common/commonVue/fangdatu.css" rel="stylesheet">
+		<link href="../me/index.css" rel="stylesheet">
+		<link href="../../static/animate.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="../../static/layui/css/layui.css" media="all">
+		<!-- <link href="../menu/header.css" rel="stylesheet"> -->
+		<!-- <link href="../me/header.css" rel="stylesheet"> -->
+
+		<style>
+			@media screen and (max-width: 1024px) {
+				.bodyMe {
+					background-size: 1024px 350px !important;
+				}
+			}
+		</style>
+	</head>
+
+	<body class="bodyMe">
+		<div class="containers ">
+			<div class="containerz">
+				<headers></headers>
+				<div class="title" style="margin-top:60px;">
+					<div style="width:120px;height:120px;left:20px;border-radius:50%;" class="overflow czjz">
+						<img @load="adjust($event)" :src="datas.avatar!=undefined?datas.avatar.url+'?imageView2/1/w/120/h/120':''" alt="" class="jz">
+					</div>
+					<span class="f40 cF6 czjz" style="left:170px;">{{datas.nickname}}</span>
+				</div>
+				<router-view></router-view>
+			</div>
+			<footers></footers>
+
+		</div>
+
+		<script src="../common/jquery-1.11.3.js"></script>
+		<script src="https://cdn.bootcss.com/babel-polyfill/6.23.0/polyfill.min.js"></script>
+		<script src="../../static/layui/layui.js"></script>
+		<script src="../common/common.js"></script>
+
+		<script src="../common/vue2.js"></script>
+		<script src="../common/vue-resource.min.js"></script>
+		<script src="../common/vue-router.min.js"></script>
+		<script src="../common/vuex.min.js"></script>
+
+		<!-- <script src="../common/commonVue/zhongjiSwiper.js"></script>
+<script src="../common/commonVue/fangdatu.js"></script> -->
+		<script src="../common/commonVue/zhongji.js"></script>
+
+		<script src="../me/store.js"></script>
+		<!-- 上传头像截图 -->
+		<script src="../common/photo/cropper.js"></script>
+		<script src="../common/photo/photo.js"></script>
+		<script src="../common/bootstrap.min.js"></script>
+		<!--  <script src="../common/swiper.jquery.js"></script>
+<script src="../common/commonVue/zhongji.js"></script>
+<script src="../common/commonVue/fangdatu.js"></script>
+<script src="../common/commonVue/zhongjiSwiper.js"></script> -->
+
+		<script src="../menu/header.js"></script>
+		<script src="../me/footer.js"></script>
+
+		<script src="../me/bases.js"></script>
+		<script src="../me/gaishu.js"></script>
+		<script src="../me/message.js"></script>
+		<script src="../me/secret.js"></script>
+		<script src="../me/testSF.js"></script>
+		<script src="../me/SF/testSFs.js"></script>
+		<script src="../me/SF/passwords.js"></script>
+		<script src="../me/SF/passwordsSuccess.js"></script>
+		<script src="../me/service.js"></script>
+		<script src="../me/news.js"></script>
+		<script src="../me/renzhen.js"></script>
+		<script src="../me/renzhen/touxiang.js"></script>
+		<script src="../me/renzhen/sfz.js"></script>
+		<script src="../me/renzhen/sfz2.js"></script>
+		<script src="../me/renzhen/shenhe.js"></script>
+
+		<!-- 
+
+<script src="../common/commonVue/zhongji.js"></script>
+<script src="../common/commonVue/zhongjiSwiper.js"></script>
+ -->
+
+		<script src="../me/base.js"></script>
+	</body>
+
+</html>

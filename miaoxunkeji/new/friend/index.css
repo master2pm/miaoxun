@@ -1,0 +1,65 @@
+/*登录注册的css*/
+body{font-family: 微软雅黑;}
+.cF6{color:#FFFFFF;}
+
+.inputborder{border:1px solid #E3E3E2 !important;}
+
+.relative{position: relative;}
+.c808082{color:#808082;}
+
+
+
+
+
+
+
+.containerz{width:1024px;margin:0 auto;}
+/*.centers{width:1024px;margin:0 auto;}*/
+.topbar{height:60px;line-height:60px;padding:0 20px;position: relative;}
+.topbar>li{margin-left:25px;}
+
+.border{border:1px solid #D2D6D6 !important;}
+.border-t{border-top:1px solid #D2D6D6 !important;}
+.border-b{border-bottom:1px solid #D2D6D6 !important;}
+.border-l{border-left:1px solid #D2D6D6 !important;}
+.border-r{border-right:1px solid #D2D6D6 !important;}
+
+/*center*/
+.centers{padding:0 20px;}
+.c4C4C4F{color:#4C4C4F;}
+.c686A6C{color:#686A6C;}
+.c696A6C{color:#696A6C;}
+.cD1D5D5{color:#D1D5D5;}
+.hong{border:1px solid #BF4040 !important;}
+.cBF4040{color:#BF4040;}
+.footertop{margin-bottom:20px;}
+
+
+/*绿色的图标*/
+.bgtu1{background:url(../tu-menu/25.png) no-repeat 0 15px;}
+.bgtu11{background:url(../tu-menu/25+.png) no-repeat 0 15px;}
+.bgtu2{background:url(../tu-menu/26.png) no-repeat 0 15px;}
+.bgtu22{background:url(../tu-menu/26+.png) no-repeat 0 15px;}
+.bgtu3{background:url(../tu-menu/27.png) no-repeat 0 15px;}
+.bgtu33{background:url(../tu-menu/27+.png) no-repeat 0 15px;}
+.bgtu4{background:url(../tu-menu/28.png) no-repeat 0 15px;}
+.bgtu44{background:url(../tu-menu/28+.png) no-repeat 0 15px;}
+.bgtu5{background:url(../tu-menu/29.png) no-repeat 0 15px;}
+.bgtu55{background:url(../tu-menu/29+.png) no-repeat 0 15px;}
+.bgtu6{background:url(../tu-menu/30.png) no-repeat 0 15px;}
+.bgtu66{background:url(../tu-menu/30+.png) no-repeat 0 15px;}
+
+.border0{border-bottom:1px solid #696a6c;}
+.chui{border-bottom:1px solid #696a6c;}
+
+.cBE403F{color:#BE403F;}
+.c239B87{color:#239B87;}
+.cE3E3E2{color:#E3E3E2;}
+.c269C88{color:#269C88;}
+.cC86731{color:#C86731;}
+.cC86731s{color:#C86731 !important;}
+.c5FB246{color:#5FB246;}
+.c999899{color:#999899;}
+.cD2D6D6{color:#D2D6D6;}
+/*鼠标放上的背景色灰色*/
+.bgs{background-color:#D2D6D6;}

@@ -1,0 +1,278 @@
+<!DOCTYPE html/>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1 , user-scalable=no;">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="X-UA-Compatible" content="edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="cache-control" content="no-cache">
+    <title></title>
+    <link rel="stylesheet" href="css/miao_mpc.css">
+  </head>
+  <body>
+    <div class="containers" v-cloak>
+      <div>
+        <div style="padding-bottom: 100px;">
+          <div class="top" style="">
+            <img src="../tu-phone/1-7.png" style="width:2%;position:absolute;top:32%;left:5%;" @click="back()"/>
+            <img src="../tu-phone/1-9.png" style="width:7%;position:relative;right: 5%;float: right;margin-left: 10%;" @click="fenxiang()"/>
+            <img v-if="false" src="../tu-phone/1-8.png" style="width:8%;position:relative;float: right; bottom: 2px"/>
+          </div>
+        <div class="mcxx">
+          <p>{{mpcxx.gg_name}}</p>
+          <div>
+            <span>{{mpcxx.group.contacts}}</span>
+            <img @click="go2(mpcxx.group.objectId.substring(mpcxx.group.objectId.indexOf(':') + 1))" :src="mpcxx.group.type=='group'?'../tu-phone/1-2.png':mpcxx.group.type=='private'?'../tu-phone/1-1.png':'../tu-phone/1-3.png'"/>
+            <br>
+            <span>回复率：<span>{{mpcxx.group.reply_ratio}}</span></span>
+            <span style="margin-left: 8%;">平均回复时间：<span>{{mpcxx.group.reply_time}}</span></span>
+            <div style="width: 95%;font-size: 14px;padding:8% 0 0;color:rgb(153,152,153);">
+              {{mpcxx.group.intro.length>0?mpcxx.group.intro.length>35?mpcxx.group.intro.substring(0,35)+'..':mpcxx.group.intro:'暂无'}}
+              <a v-if="mpcxx.group.intro.length>35" href=""style="color:rgb(96,179,70);text-decoration:none;">阅读更多</a>
+            </div>
+          </div>
+        </div>
+        <div>
+          <p style="margin:5% 0;"><span style="color:rgb(153,152,153)">苗圃场联系人 · </span><span style="color:rgb(74,73,75)">{{mpcxx.group.contacts}}</span></p>
+        </div>
+        <div>
+          <p style="margin:5% 0;width:100%;"><span style="color:rgb(153,152,153)">苗圃场地址 · </span><span style="color:rgb(103,104,104)">{{mpcxx.gg_address.province + mpcxx.gg_address.detail_address}}</span></p>
+        </div>
+        <div :class="{map1:fangmap==false,map:fangmap!=false}" @click="!fangmap && bianda()">
+          <div v-if="fangmap" style="position:absolute;z-index:1;color:white;padding:3%;background-color:black;opacity:0.4;width:94%;">{{mpcxx.gg_address.province+"，"+mpcxx.gg_address.city+"，"+mpcxx.gg_address.detail_address.replace(mpcxx.gg_address.province,'').replace(mpcxx.gg_address.city,'')}}</div>
+          <span @click="fangmap && bianda()" v-if="fangmap" style="position: absolute;bottom: 5%;right: 5%;background-color: rgb(38, 156, 136);color: white;border-radius: 40px;z-index: 2;font-size: 26px;padding: 4% 14%;">返回</span>
+          <div class="relative" style="height:100%">
+            <div class="relative" style="height:100%;">
+              <div id="map_canvas"  class=" relative" style="height:100%;">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bcmm" v-if="trees.length>0">
+          <div>
+            <p>本场苗木</p>
+          </div>
+          <ul style="margin-top: 6%;">
+            <li v-for="(item,index) in trees" :class="{m3:index%2==1}" @click="go(item.objectId)">
+              <div class="limg">
+                <img :src="item.mu_photo[0].url"/>
+              </div>
+              <span>
+                <span style="color:rgb(163,152,153)">{{item.mu_name}}</span><span class="mtype">{{item.mu_type.substring(0,1)}}</span>
+                <img :src="item.mu_ground.group.type=='group'?'../tu-phone/1-2.png':item.mu_ground.group.type=='private'?'../tu-phone/1-1.png':'../tu-phone/1-3.png'"/>
+              </span>
+              <div class="bnei">
+                <p v-if="item.mu_mj_min||item.mu_zg_min" :class="{tsp:item.mu_mj_min&&item.mu_zg_min}">
+                  <span v-if="item.mu_mj_min">{{'米径' + item.mu_mj_min + '-' + item.mu_mj_max}}</span>
+                  <span v-if="item.mu_mj_min && item.mu_zg_max"> · </span>
+                  <span v-if="item.mu_zg_min">{{' 自然高' + item.mu_zg_min + '-' + item.mu_zg_max}}</span>
+                </p>
+                <p v-if="item.mu_rg_min||item.mu_zfjg_max" :class="{tsp:item.mu_rg_min&&item.mu_zfjg_max}">
+                  <span v-if="item.mu_rg_min">{{'肉高' + item.mu_rg_min + '-' + item.mu_rg_max}}</span>
+                  <span v-if="item.mu_rg_min && item.mu_zfjg_max"> · </span>
+                  <span v-if="item.mu_zfjg_max">{{'主分枝高' + item.mu_zfjg_min + '-' + item.mu_zfjg_max}}</span>
+                </p>
+                <p v-if="item.mu_gf_min">
+                  <span v-if="item.mu_gf_min">{{'冠幅' + item.mu_gf_min + '-' + item.mu_gf_max}}</span>
+                </p>
+              </div>
+              <div style="position:relative;margin-top:8%;">
+                <div>
+                  <p class="price">
+                    ￥{{item.mu_price!=-1?item.mu_price+'/株':'面议'}}
+                    <span style="position:absolute;right:3%;bottom:0;font-size:12px;text-align:right;color:rgb(153,152,153);">
+                      <span style="color:rgb(153,152,153);">单位：cm</span><br>
+                      <span style="color:rgb(96,179,70)">库存{{item.mu_stock}}株</span>
+                    </span>
+                  </p>
+                </div>
+                <p class="pdz">
+                  {{item.mu_province.substring(0,item.mu_province.length-1) + ' · ' + item.mu_city.substring(0,item.mu_city.length-1)}}
+                  <span>{{item.mu_ground.gg_name.replace(item.mu_province,'').replace(item.mu_province.substring(0,item.mu_province.length-1),'').replace(item.mu_city,'').replace(item.mu_city.substring(0,item.mu_city.length-1),'').substring(0,6)}}...</span>
+                </p>
+              </div>
+
+            </li>
+          </ul>
+        </div>
+        <div class="bfx"></div>
+        <div class="xf">
+          <img class="cloimg" src="../tu-phone/1-15.png" style="width:8%;" @click="fenxiang()">
+          <div class="xbk">
+            <a :href="mpcxx.gg_contact_number?'tel:'+mpcxx.gg_contact_number:''"><img src="../tu-phone/1-6.png"/></a>
+            <img src="../tu-phone/1-17.png"/>
+            <img class="logo" src="../tu-phone/1-16.png" style="width: 16%;"/>
+            <a style="padding-right:0%;margin-left:0%;" href="http://gdmiaoxun.com/new/parent/index.html#/downloads" target="_blank"><span>下载客户端立即分享</span></a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+    <script src="../common/jquery-1.11.3.js"></script>
+    <script src="../common/jquery.qrcode.min.js"></script>
+    <script src="../common/common.js"></script>
+    <script src="../common/vue2.js"></script>
+    <script src="../common/vue-resource.min.js"></script>
+    <script src="../common/vue-router.min.js"></script>
+    <script src="../common/vuex.min.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=KZxQqurmyCavxkXspzzPjcnaljsWUiEA"></script>
+    <script src="../friend/store.js"></script>
+    <script>
+      var vm = new Vue({
+        el: '.containers',
+        data: {
+          id: '',
+          trees:'',
+          map:'',
+          fangmap:false,//放大地图
+          mpcxx:''
+        },
+        store: store,
+        components:{},
+        methods:{
+          go:function(mid){
+            var that = this;
+            var dz = location.href;
+            dz = dz.replace('miao_mpc.html','miao_mm.html')
+            dz = dz.replace('id','mid');
+            location.href= dz + "&cid=" + mid;
+          },
+          go2:function(uid){
+            var that = this;
+            var dz = location.href;
+            var test = dz.substring(0,dz.indexOf("detail")) + 'detail/miao_gqt.html?id=' + uid ;
+            location.href= test;
+          },
+          back:function(){
+            window.history.back();
+          },
+          fen:function(type){
+            if(type == 'weibo'){
+              alert('微博分享')
+              var url = location.href;
+              var link = 'http://service.weibo.com/share/share.php?url='+ url +'&title={title}&pic={pic}&searchPic=false';
+              alert(link)
+              window.open(link)
+            }else if(type == 'qq'){
+              alert('qq分享')
+            }else {
+              alert('微信分享')
+            }
+          },
+          fenxiang:function(){
+            var that = this;
+            console.log($('.xbk').css('right'))
+            if($('.xbk').css('right') == '0px'){
+              $(".xbk").css({'right':'100%'});
+              $(".bfx").css({'display':'block'});
+              $(".cloimg").css({'display':'inline-block'})
+              console.log($(".cloimg").css('display'))
+              setTimeout(function(){
+                $(".bfx").css({'opacity':'0.5'});
+              },1)
+
+            }else{
+              $(".xbk").css({'right':'0%'});
+              $(".bfx").css({'opacity':'0'});
+              $(".cloimg").css({'display':'none'});
+              setTimeout(function(){
+                $(".bfx").css({'display':'none'});
+              },1000)
+            }
+          },
+          changemap:function(bool){
+            var that = this;
+            if(bool){
+              that.map.enableDragging();
+            }else{
+              that.map.disableDragging();
+            }
+          },
+          // 点击地图放大
+          bianda:function(){
+            console.log('地图放大')
+            var that = this;
+            if(!that.fangmap){
+              $("body").css({"overflow-y":"hidden"});
+              $("body").scrollTop(0);
+              that.changemap(true);
+            }else{
+              $("body").css({"overflow-y":"auto"});
+              $("body").scrollTop(200);
+              that.changemap(false);
+            }
+            setTimeout(function(){
+              that.fangmap = !that.fangmap;
+            },10)
+            setTimeout(function(){
+              that.remap()
+            },200);
+
+          },
+          // 地图位置居中
+          remap:function(){
+            var that = this;
+            var initLat = that.mpcxx.gg_address.point.latitude;
+            var initLng = that.mpcxx.gg_address.point.longitude;
+            var point = new BMap.Point(initLng, initLat);  // 创建点坐标
+            that.map.centerAndZoom(point, 17);
+          }
+        },
+        mounted:function(){
+          var that = this;
+          var di = location.search;
+          if(di.indexOf('id=')!=-1){
+            that.id = {groundId: di.substring(di.indexOf('id=')+3 , di.indexOf('id=')+ 27)}
+          }else{
+            that.id = {groundId: "59db3ad39545040067f21ec6"}
+            // that.id = {groundId: "59b89d62570c35006e4d5b58"}
+          }
+          console.log(that.id);
+          //苗圃场所有树
+          $.get(this.$store.state.Boss+"/tree?where="+encodeURI(JSON.stringify(that.id)),function(data){
+            that.trees = data.results.data;
+            console.log(that.trees)
+            console.log(that.$store.state.Boss)
+          });
+
+          // 苗圃场信息
+          $.get(this.$store.state.Boss+"ground/"+ that.id.groundId,function(data){
+            that.mpcxx = data.results;
+            console.log(that.mpcxx)
+
+          });
+
+          // $.get(this.$store.state.Boss+"/")
+          setTimeout(function(){
+              that.map = new BMap.Map("map_canvas");          // 创建地图实例
+              var initLat = that.mpcxx.gg_address.point.latitude;
+              var initLng = that.mpcxx.gg_address.point.longitude;
+              if(initLat==''){
+                initLat=116.404
+              }
+              if(initLat==''){
+                initLat=39.915
+              }
+              console.log("缓存获取坐标")
+              console.log(initLat,initLng)
+              var point = new BMap.Point(initLng, initLat);  // 创建点坐标
+              that.map.centerAndZoom(point, 17);                 // 初始化地图，设置中心点坐标和地图级别
+              // that.map.enableScrollWheelZoom();                            // 启用滚轮放大缩小
+              var mk = new BMap.Marker(point);
+              var myIcon = new BMap.Icon("../tu-phone/1-68.png", new BMap.Size(29,37));
+              mk = new BMap.Marker(point,{icon:myIcon});
+              that.map.addOverlay(mk);//把点添加到地图上
+              that.map.disableDragging();
+
+          },10)
+
+        }
+      })
+    </script>
+  </body>
+</html>

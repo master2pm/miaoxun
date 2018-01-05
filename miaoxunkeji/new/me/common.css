@@ -1,0 +1,322 @@
+/*0.测试边框线*/
+/*1.引入的字体*/
+/*2.body的内外边距*/
+/*3.font-size:字号大小*/
+/*4.弹出框样式，透明背景加白色框*/
+/*5.万能居中*/
+/*6.
+var w=$(window).width()/640*100;
+document.getElementsByTagName('html')[0].style.fontSize =w+"px"
+div{width:0.6rem;}   相当于60px
+*/
+
+/*7.改变输入框input的placehode颜色*/  
+/*::-webkit-input-placeholder {
+  color: #cccccc;
+}
+:-moz-placeholder {
+  color:#cccccc;
+}
+::-moz-placeholder{
+ color: #cccccc;
+}
+:-ms-input-placeholder {
+  color: #cccccc;
+}
+*/
+
+/*7.取消ios中输入框的灰色阴影*/
+textarea,input {
+
+　　box-shadow:0px 0px 0px rgba(0,0,0,0);
+
+     -webkit-appearance:none;
+
+}
+input,button{outline: none;}
+
+/*0.测试边框线*/
+.red{border:1px solid red;}
+.border{border:1px solid #f7f7f6;}
+.border-b{border-bottom:1px solid #f7f7f6 !important;}
+.border-t{border-top:1px solid #f7f7f6;}
+.border-l{border-left:1px solid #f7f7f6;}
+.border-r{border-right:1px solid #f7f7f6;}
+.bai{background: white;}
+.man{left:0;top:0;right:0;bottom:0;}
+/*1.引入的字体*/
+/*   @font-face {
+    font-family: '微软雅黑';
+    src:url('MSYH.TTF') format('truetype')
+} */
+
+
+
+/*2.body的内外边距*/
+body{margin:0;padding: 0;font-family: "微软雅黑" !important;} 
+p,h1,h2,h3,h4,h5,h6{margin:0;padding: 0;}
+ul,li,ol,dl{margin:0;padding: 0;list-style: none;}
+a{text-decoration: none !important;}
+a:link {color:#D2D6D6;} /* 未访问时的状态 */
+a:visited {color:#D2D6D6;} /* 已访问过的状态 */
+a:hover {color:#D2D6D6;} /* 鼠标移动到链接上时的状态 */
+a:active {color:#D2D6D6;} /* 鼠标按下去时的状态 */
+.lf{float: left;}
+.rf{float: right;}
+.rad{-moz-border-radius:5px;border-radius:5px;}
+.none{border: none;outline: none;}
+
+/*超出的是用省略符号*/
+.diandiandian{width:100%; white-space:nowrap; text-overflow:ellipsis; -o-text-overflow:ellipsis; overflow:hidden;}
+
+
+/*4.固定定位的弹出框样式，透明背景加白色框*/
+.wai_kuang{z-index:2000;position: fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);}
+.nei_kuang{position: absolute;left:50%;top:50%;-webkit-transform: translate(-50%,-50%);-moz-transform: translate(-50%,-50%);transform: translate(-50%,-50%);}/*字体会因为transform变模糊*/
+.nei_kuang2{margin: auto;  position: absolute;top: 0; left: 0; bottom: 0; right: 0;}/*字体不会因为transform变模糊*/
+
+
+
+/*5.万能居中*/
+/*垂直居中*/
+.czjz{position: absolute;top:50%;-webkit-transform: translateY(-50%);-moz-transform: translateY(-50%);transform: translateY(-50%);}
+.czjz2{position: absolute;top:50%;-webkit-transform: translateY(-50%);-moz-transform: translateY(-50%);transform: translateY(-50%);}
+/*水平居中*/
+.spjz{position: absolute;left:50%;-webkit-transform: translateX(-50%);-moz-transform: translateX(-50%);transform: translateX(-50%);}
+.spjz2{position: absolute;left:50%;-webkit-transform: translateX(-50%);-moz-transform: translateX(-50%);transform: translateX(-50%);}
+
+.margin{margin:0 auto;}
+/*居中*/
+.jz{position: absolute;left:50%;top:50%;-webkit-transform: translate(-50%,-50%);-moz-transform: translate(-50%,-50%);transform: translate(-50%,-50%);}/*字体会因为transform变模糊*/
+.jz2{margin: auto;  position: absolute;top: 0; left: 0; bottom: 0; right: 0;}/*字体不会因为transform变模糊*/
+/*字体的对齐方式*/
+.center{text-align:center;}
+.left{text-align:left;}
+.right{text-align:right;}
+/*数字和字母自动换行*/
+.huanhang{table-layout: fixed;word-break: break-all;word-wrap:break-word;}
+/*浮动  手指   加粗*/
+.overflow{overflow: hidden;}
+.cursor{cursor:pointer;}
+.bold{font-weight: bold;}
+/*去掉高德的图标*/
+   .amap-logo {
+            right: 0 !important;
+            left: auto !important;
+            display: none;
+        }
+        
+        .amap-copyright {
+            right: 70px !important;
+            left: auto !important;
+             display: none;
+             opacity: 0;
+        }  
+/*去掉百度的图标*/
+
+/*3.font-size:手机用的字号大小*/
+.fz00{font-size: 0.00rem;}
+.fz01{font-size: 0.01rem;}
+.fz02{font-size: 0.02rem;}
+.fz03{font-size: 0.03rem;}
+.fz04{font-size: 0.04rem;}
+.fz05{font-size: 0.05rem;}
+.fz06{font-size: 0.06rem;}
+.fz07{font-size: 0.07rem;}
+.fz08{font-size: 0.08rem;}
+.fz09{font-size: 0.09rem;}
+.fz10{font-size: 0.10rem;}
+.fz11{font-size: 0.11rem;}
+.fz12{font-size: 0.12rem;}
+.fz13{font-size: 0.13rem;}
+.fz14{font-size: 0.14rem;}
+.fz15{font-size: 0.15rem;}
+.fz16{font-size: 0.16rem;}
+.fz17{font-size: 0.17rem;}
+.fz18{font-size: 0.18rem;}
+.fz19{font-size: 0.19rem;}
+.fz20{font-size: 0.20rem;}
+.fz21{font-size: 0.21rem;}
+.fz22{font-size: 0.22rem;}
+.fz23{font-size: 0.23rem;}
+.fz24{font-size: 0.24rem;}
+.fz25{font-size: 0.25rem;}
+.fz26{font-size: 0.26rem;}
+.fz27{font-size: 0.27rem;}
+.fz28{font-size: 0.28rem;}
+.fz29{font-size: 0.29rem;}
+.fz30{font-size: 0.30rem;}
+.fz31{font-size: 0.31rem;}
+.fz32{font-size: 0.32rem;}
+.fz33{font-size: 0.33rem;}
+.fz34{font-size: 0.34rem;}
+.fz35{font-size: 0.35rem;}
+.fz36{font-size: 0.36rem;}
+.fz37{font-size: 0.37rem;}
+.fz38{font-size: 0.38rem;}
+.fz39{font-size: 0.39rem;}
+.fz40{font-size: 0.40rem;}
+.fz41{font-size: 0.41rem;}
+.fz42{font-size: 0.42rem;}
+.fz43{font-size: 0.43rem;}
+.fz44{font-size: 0.44rem;}
+.fz45{font-size: 0.45rem;}
+.fz46{font-size: 0.46rem;}
+.fz47{font-size: 0.47rem;}
+.fz48{font-size: 0.48rem;}
+.fz49{font-size: 0.49rem;}
+.fz50{font-size: 0.50rem;}
+.fz51{font-size: 0.51rem;}
+.fz52{font-size: 0.52rem;}
+.fz53{font-size: 0.53rem;}
+.fz54{font-size: 0.54rem;}
+.fz55{font-size: 0.55rem;}
+.fz56{font-size: 0.56rem;}
+.fz57{font-size: 0.57rem;}
+.fz58{font-size: 0.58rem;}
+.fz59{font-size: 0.59rem;}
+.fz60{font-size: 0.60rem;}
+.fz61{font-size: 0.61rem;}
+.fz62{font-size: 0.62rem;}
+.fz63{font-size: 0.63rem;}
+.fz64{font-size: 0.64rem;}
+.fz65{font-size: 0.65rem;}
+.fz66{font-size: 0.66rem;}
+.fz67{font-size: 0.67rem;}
+.fz68{font-size: 0.68rem;}
+.fz69{font-size: 0.69rem;}
+.fz70{font-size: 0.70rem;}
+.fz71{font-size: 0.71rem;}
+.fz72{font-size: 0.72rem;}
+.fz73{font-size: 0.73rem;}
+.fz74{font-size: 0.74rem;}
+.fz75{font-size: 0.75rem;}
+.fz76{font-size: 0.76rem;}
+.fz77{font-size: 0.77rem;}
+.fz78{font-size: 0.78rem;}
+.fz79{font-size: 0.79rem;}
+.fz80{font-size: 0.80rem;}
+.fz81{font-size: 0.81rem;}
+.fz82{font-size: 0.82rem;}
+.fz83{font-size: 0.83rem;}
+.fz84{font-size: 0.84rem;}
+.fz85{font-size: 0.85rem;}
+.fz86{font-size: 0.86rem;}
+.fz87{font-size: 0.87rem;}
+.fz88{font-size: 0.88rem;}
+.fz89{font-size: 0.89rem;}
+.fz90{font-size: 0.90rem;}
+.fz91{font-size: 0.91rem;}
+.fz92{font-size: 0.92rem;}
+.fz93{font-size: 0.93rem;}
+.fz94{font-size: 0.94rem;}
+.fz95{font-size: 0.95rem;}
+.fz96{font-size: 0.96rem;}
+.fz97{font-size: 0.97rem;}
+.fz98{font-size: 0.98rem;}
+.fz99{font-size: 0.99rem;}
+.fz100{font-size: 1rem;}
+
+
+/*网页用的字号px*/
+.f00{font-size: 0px;}
+.f01{font-size: 1px;}
+.f02{font-size: 2px;}
+.f03{font-size: 3px;}
+.f04{font-size: 4px;}
+.f05{font-size: 5px;}
+.f06{font-size: 6px;}
+.f07{font-size: 7px;}
+.f08{font-size: 8px;}
+.f09{font-size: 9px;}
+.f10{font-size: 10px;}
+.f11{font-size: 11px;}
+.f12{font-size: 12px;}
+.f13{font-size: 13px;}
+.f14{font-size: 14px;}
+.f15{font-size: 15px;}
+.f16{font-size: 16px;}
+.f17{font-size: 17px;}
+.f18{font-size: 18px;}
+.f19{font-size: 19px;}
+.f20{font-size: 20px;}
+.f21{font-size: 21px;}
+.f22{font-size: 22px;}
+.f23{font-size: 23px;}
+.f24{font-size: 24px;}
+.f25{font-size: 25px;}
+.f26{font-size: 26px;}
+.f27{font-size: 27px;}
+.f28{font-size: 28px;}
+.f29{font-size: 29px;}
+.f30{font-size: 30px;}
+.f31{font-size: 31px;}
+.f32{font-size: 32px;}
+.f33{font-size: 33px;}
+.f34{font-size: 34px;}
+.f35{font-size: 35px;}
+.f36{font-size: 36px;}
+.f37{font-size: 37px;}
+.f38{font-size: 38px;}
+.f39{font-size: 39px;}
+.f40{font-size: 40px;}
+.f41{font-size: 41px;}
+.f42{font-size: 42px;}
+.f43{font-size: 43px;}
+.f44{font-size: 44px;}
+.f45{font-size: 45px;}
+.f46{font-size: 46px;}
+.f47{font-size: 47px;}
+.f48{font-size: 48px;}
+.f49{font-size: 49px;}
+.f50{font-size: 50px;}
+.f51{font-size: 51px;}
+.f52{font-size: 52px;}
+.f53{font-size: 53px;}
+.f54{font-size: 54px;}
+.f55{font-size: 55px;}
+.f56{font-size: 56px;}
+.f57{font-size: 57px;}
+.f58{font-size: 58px;}
+.f59{font-size: 59px;}
+.f60{font-size: 60px;}
+.f61{font-size: 61px;}
+.f62{font-size: 62px;}
+.f63{font-size: 63px;}
+.f64{font-size: 64px;}
+.f65{font-size: 65px;}
+.f66{font-size: 66px;}
+.f67{font-size: 67px;}
+.f68{font-size: 68px;}
+.f69{font-size: 69px;}
+.f70{font-size: 70px;}
+.f71{font-size: 71px;}
+.f72{font-size: 72px;}
+.f73{font-size: 73px;}
+.f74{font-size: 74px;}
+.f75{font-size: 75px;}
+.f76{font-size: 76px;}
+.f77{font-size: 77px;}
+.f78{font-size: 78px;}
+.f79{font-size: 79px;}
+.f80{font-size: 80px;}
+.f81{font-size: 81px;}
+.f82{font-size: 82px;}
+.f83{font-size: 83px;}
+.f84{font-size: 84px;}
+.f85{font-size: 85px;}
+.f86{font-size: 86px;}
+.f87{font-size: 87px;}
+.f88{font-size: 88px;}
+.f89{font-size: 89px;}
+.f90{font-size: 90px;}
+.f91{font-size: 91px;}
+.f92{font-size: 92px;}
+.f93{font-size: 93px;}
+.f94{font-size: 94px;}
+.f95{font-size: 95px;}
+.f96{font-size: 96px;}
+.f97{font-size: 97px;}
+.f98{font-size: 98px;}
+.f99{font-size: 99px;}
+.f100{font-size: 100px;}

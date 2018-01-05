@@ -1,0 +1,182 @@
+<!DOCTYPE html/>
+<html lang="zh-cn">
+  <head lang="en">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1 , user-scalable=no;">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" href="css/miao_gqt.css">
+  </head>
+  <body>
+
+    <div class="containers" v-cloak>
+      <div>
+        <div class="top">
+          <img src="../tu-phone/1-7.png" style="width:2%;position:absolute;top:32%;left:5%;" @click="back()"/>
+          <img src="../tu-phone/1-9.png" style="width:7%;position:relative;right: 5%;float: right;margin-left: 10%;" @click="fenxiang()"/>
+          <img v-if="false" src="../tu-phone/1-8.png" style="width:8%;position:relative;float: right; bottom: 2px"/>
+        </div>
+        <div class="">
+          <img :src="user.avatar.url" style="height: 300px;">
+          <div>
+            <p style="width: 75%;">{{user.private_group.name.substring(0,8)}}</p>
+            <p v-if="user.private_group.name.length>8">{{user.private_group.name.substring(9)}}</p>
+            <img :src="user.private_group.type=='group'?'../tu-phone/1-2.png':user.private_group.type=='private'?'../tu-phone/1-1.png':'../tu-phone/1-3.png'"/>
+          </div>
+          <div class="jlsj">
+            <p>建立时间：{{user.createdAt.substring(0,user.createdAt.indexOf(' '))}}</p>
+            <span v-if="user.master==1">回复率：<span>{{user.reply_ratio}}</span></span>
+            <span style="margin-left: 10%;">平均回复时间：<span>{{user.private_group.reply_time}}</span></span>
+            <div style="width: 95%;font-size: 14px;padding:5% 0;color:rgb(153,152,153);border-bottom:1px solid rgb(242,242,242);">
+              {{user.intro.length>0?user.intro.length>35?user.intro.substring(0,35)+'..':user.intro:'暂无'}}
+              <a v-if="user.intro.length>35" href=""style="color:rgb(96,179,70);text-decoration:none;">阅读更多</a>
+            </div>
+            <div style="padding: 6% 0;" v-if="user.private_group.type!='private'">
+              <span class="qylxr">企业联系人 · </span><span :class="{mj:user.master==1,imj:user.master==0}">{{user.private_group.contacts}}</span>
+            </div>
+          </div>
+        </div>
+        <!-- v-if="user.private_group.type=='company'" -->
+        <div v-if="user.master==1" style="background-color: rgb(242,242,242); padding:7% 5% 25%;">
+          <div v-if="user.private_group.type=='company'" style="background-color: white;padding: 5%;border-radius: 5px;color: rgb(74,73,75);position:relative;">
+            查看营业执照
+            <img src="../tu-phone/1-13.png" style="position:absolute;right: 5%;top: 35%;width: 3%;"/>
+          </div>
+          <div style="margin-bottom: 5%;">
+            <p style="color: rgb(103,104,104);font-size:15px;" :class="{mg7:user.private_group.type=='company',mg0:user.private_group.type!='company'}">{{user.private_group.type=='company'?'旗下苗圃场':user.private_group.type=='group'?user.private_group.name:user.private_group.contacts+'的苗圃场'}}</p>
+          </div>
+          <div v-for="(item,index) in mq">
+            <div style="background-color: white;border-radius:5px;padding: 3%;margin-bottom: 5%;" @click="go(item.objectId)">
+              <span style="color:rgb(96,179,70);font-size: 18px;margin: 0;">{{item.gg_name}}</span><span style="text-align:right;float:right;color: rgb(153,152,153);font-size: 13px;">{{juli(item.gg_address.point.longitude,item.gg_address.point.latitude)+'km'}}</span>
+              <p style="margin:3% 0;"><span style="color: rgb(153,152,153);">苗圃场地址 · </span><span style="color: rgb(103,104,104);">{{item.gg_address.province + item.gg_address.city + item.gg_address.detail_address}}</span></p>
+            </div>
+          </div>
+        </div>
+        <div class="bfx"></div>
+        <div class="xf" style="width:100%;">
+          <img class="cloimg" src="../tu-phone/1-15.png" style="width:8%;" @click="fenxiang()">
+          <div class="xbk">
+            <a :href="user.contact_number?'tel:'+user.contact_number:''"><img src="../tu-phone/1-6.png"/></a>
+            <img src="../tu-phone/1-17.png"/>
+            <img class="logo" src="../tu-phone/1-16.png" style="width: 16%;"/>
+            <a style="padding-right:0%;margin-left:0%;" href="http://gdmiaoxun.com/new/parent/index.html#/downloads" target="_blank"><span>下载客户端立即分享</span></a>
+          </div>
+        </div>
+        <div class="map" style="display:none"></div>
+      </div>
+    </div>
+
+
+
+
+    <script src="../common/jquery-1.11.3.js"></script>
+    <script src="../common/common.js"></script>
+    <script src="../common/vue2.js"></script>
+    <script src="../common/vue-resource.min.js"></script>
+    <script src="../common/vue-router.min.js"></script>
+    <script src="../common/vuex.min.js"></script>
+    <script src="../friend/store.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=KZxQqurmyCavxkXspzzPjcnaljsWUiEA"></script>
+    <script>
+      var vm = new Vue({
+        el: '.containers',
+        data: {
+          //企个团
+          mq:'',
+          user:'',
+          point:''
+        },
+        store:store,
+        components:{},
+        methods:{
+          // 后退
+          back:function(){
+            window.history.back();
+          },
+
+        mm:function(){
+          this.distance()
+        },
+        // 点击苗圃场的跳转
+        go:function(id){
+          console.log(id)
+          var that = this;
+          var dz = location.href;
+          var test = dz.substring(0, dz.indexOf("detail")) + 'detail/miao_mpc.html?id=' + id;
+          location.href = test;
+        },
+          // 点击分享按钮和关闭分享的按钮
+          fenxiang:function(){
+            var that = this;
+            if($('.xbk').css('right') == '0px'){
+              $(".xbk").css({'right':'100%'});
+              $(".bfx").css({'display':'block'});
+              $(".cloimg").css({'display':'inline-block'})
+              setTimeout(function(){
+                $(".bfx").css({'opacity':'0.5'});
+              },1)
+
+            }else{
+              $(".xbk").css({'right':'0%'});
+              $(".bfx").css({'opacity':'0'});
+              $(".cloimg").css({'display':'none'});
+              setTimeout(function(){
+                $(".bfx").css({'display':'none'});
+              },1000)
+            }
+          },
+          // 现在的经纬度和给的经纬度算距离
+          juli:function(Lng,Lat){
+            var that = this;
+            var map = new BMap.Map("map");
+            var pointB = new BMap.Point(Lng,Lat);
+            console.log((map.getDistance(that.point,pointB)/1000).toFixed(2));
+            return (map.getDistance(that.point,pointB)/1000).toFixed(2);
+          }
+        },
+        mounted:function(){
+          // 传一个用户ID 先查出用户信息 判断是否为买卖家 卖家再查用户所有的苗圃场
+          var di = location.search;
+          var id = di.substring(di.indexOf('=')+1 , di.indexOf('=')+25);
+          console.log(id);
+          var that = this;
+          var uid = '';
+          if(id == '' || id == null || id.length < 20){
+            // id = "59b5f239ee920a006b008521";
+               id = "59db3770a22b9d00618b7672";
+          }
+          $.get(this.$store.state.Boss+"user/info",{"id":id},function(data){
+            console.log(data)
+            that.user = data.results;
+            if(that.user.master == 1){
+              $.get("http://m1-ymboss.leanapp.cn/api/v1/group/"+ that.user.private_group.objectId +"/ground",function(data){
+                if(data.results.count>0)
+                that.mq = data.results.data;
+                console.log("苗圃场有：" + that.mq.length);
+                console.log(that.mq)
+              })
+            }
+          })
+            var geolocation = new BMap.Geolocation();
+             var pt;
+             geolocation.getCurrentPosition(function (r) {
+               if (this.getStatus() == BMAP_STATUS_SUCCESS) {
+               //setCookie("localX", r.point.lng);
+               //setCookie("localY", r.point.lat);
+               that.point = new BMap.Point(r.point.lng,r.point.lat);
+               console.log(that.point);
+             }
+           })
+
+
+
+
+
+
+
+
+        }
+      })
+    </script>
+  </body>
+</html>

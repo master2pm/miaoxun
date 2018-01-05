@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<!-- 1.Edge 模式通知ie以最高级别的可用模式显示内容-->
+<meta http-equiv="X-UA-Compatible" content="edge" />
+<!-- 2.这样写可以达到的效果是如果安装了GCF，则使用GCF来渲染页面，如果为安装GCF，则使用最高版本的IE内核进行渲染。 -->
+<meta http-equiv = "X-UA-Compatible" content = "IE=edge,chrome=1" />
+<!-- 3.强制使用极速模式 -->
+<meta name="renderer" content="webkit" />
+<!-- 4.先发送请求，与服务器确认该资源是否被更改，如果未被更改，则使用缓存。 -->
+<meta http-equiv="cache-control" content="no-cache">
+
+<!-- 极速模式     “极速模式”是以Blink（Webkit）为内核的浏览模式
+     兼容模式     “兼容模式”下，360安全浏览器调用Trident内核（IE内核）-->
+
+
+
+
+     <!-- Set render engine for 360 browser -->
+  <!-- <meta name="renderer" content="webkit"> -->
+
+  <!-- No Baidu Siteapp-->
+  <!-- <meta http-equiv="Cache-Control" content="no-siteapp"/> -->
+
+    <title>miao</title>
+ <!--    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=KZxQqurmyCavxkXspzzPjcnaljsWUiEA"></script> -->
+
+
+<!-- http://api.map.baidu.com/getscript?v=2.0&ak=Kpjp7jddqVUhWK5VkrfNt3YNezY88NtR&services=&t=20170517145936 -->
+
+
+    <script	>
+
+
+
+
+
+    	function changeSize(){
+         $("#left").css("height",innerHeight-60+'px')
+         $("#right").css("height",innerHeight-60+'px')
+         $(".list").css("height",innerHeight-200+'px')
+         $(".listf").css("height",innerHeight-200+'px')
+         store.state.h=$(".bgg").width()/2.016+'px'
+         store.state.h1=$(".bgg").width()/2.42+'px'
+      }
+   window.onresize =changeSize
+//   推荐幻灯片：宽/高=252：125
+// 头条幻灯片：宽/高=121：50
+   var mapp=''
+    </script>
+  </head>
+  <body>
+    <div id="app" ></div>
+    <!-- built files will be auto injected -->
+     <script src='/static/jquery-1.11.3.js'></script>
+
+    <!-- 日期转换 -->
+    <!-- <script src="http://momentjs.cn/downloads/moment.js"></script> -->
+    <script src="/static/dist/realtime.browser.min.js"></script>
+
+    <script src='/static/common.js'></script>
+    <script src='/static/layui/layui.js'></script>
+    <link rel="stylesheet" href="/static/layui/css/layui.css"/>
+    <script src='/static/jquery.fly.min.js'></script>
+    <link href="/static/font_404956_f92h4v4evqn3tyb9/iconfont.css" rel="stylesheet">
+    <link href="/static/animate.min.css" rel="stylesheet">
+
+    <!-- 日历 -->
+<link rel="stylesheet" href="/static/date.css"/>
+     <script src='/static/date.js'></script>
+     <script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&ak=KZxQqurmyCavxkXspzzPjcnaljsWUiEA"></script>
+  </body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<!-- 1.Edge 模式通知ie以最高级别的可用模式显示内容-->
+<meta http-equiv="X-UA-Compatible" content="edge" />
+<!-- 2.这样写可以达到的效果是如果安装了GCF，则使用GCF来渲染页面，如果为安装GCF，则使用最高版本的IE内核进行渲染。 -->
+<meta http-equiv = "X-UA-Compatible" content = "IE=edge,chrome=1" />
+<!-- 3.强制使用极速模式 -->
+<meta name="renderer" content="webkit" />
+<!-- 4.先发送请求，与服务器确认该资源是否被更改，如果未被更改，则使用缓存。 -->
+<meta http-equiv="cache-control" content="no-cache">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- 极速模式     “极速模式”是以Blink（Webkit）为内核的浏览模式
+     兼容模式     “兼容模式”下，360安全浏览器调用Trident内核（IE内核）-->
+
+
+
+
+     <!-- Set render engine for 360 browser -->
+  <!-- <meta name="renderer" content="webkit"> -->
+
+  <!-- No Baidu Siteapp-->
+  <!-- <meta http-equiv="Cache-Control" content="no-siteapp"/> -->
+
+    <title>后台</title>
+    <script	>
+
+    </script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+  </body>
+</html>

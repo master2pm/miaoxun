@@ -1,0 +1,106 @@
+body{min-width: 1024px;}
+  @media screen and (max-width: 1024px) {
+    header {
+       position:absolute !important;
+        width: 1024px !important;
+    }
+}
+.absolute{position: absolute;}
+.relative{position: relative;}
+/*css3的动画效果*/
+.animated {
+    -webkit-animation-duration: 0.3s !important;
+    animation-duration: 0.3s !important;
+    -webkit-animation-fill-mode: both;
+    /*opacity: 1 !important;*/
+    animation-fill-mode: both;
+}
+/*防止layui按钮抖动*/
+.layui-btn{transition:none !important;-webkit-transition:none !important;}
+/*@keyframes zoomIn{
+0% {
+     opacity: 0; 
+}
+50% {
+     opacity: 1; 
+}
+}*/
+/*限制输入框为数值类型，但是去掉默认的上下箭头*/
+/*在chrome下：*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button{
+    -webkit-appearance: none !important;
+    margin: 0; 
+}
+/*Firefox下：*/
+input[type="number"]{-moz-appearance:textfield;}
+
+.layui-btn-zuo{
+  float:left !important;
+   margin:0 !important;
+  border-bottom-left-radius: 5px !important;
+  font-size:18px !important;
+  width:50% !important;
+  height:80px !important;
+  border:none !important;
+  border-top:1px solid #f2f2f2 !important;
+            }
+.layui-btn-you{
+  color:white !important;
+  float:right !important;
+  border-bottom-right-radius: 5px !important;
+  font-size:18px !important;
+  margin:0 !important;
+   border:none !important;
+  width:50% !important;
+  height:80px !important;
+            }
+.type16s{width: 15px;
+    height: 16px;
+    color: #FEFEFE;
+    position: relative;
+    top:-1px;
+        background: #3CA349;
+        display: inline-block;
+        text-align: center;
+    line-height: 16px;}
+
+    /*超出的是用省略符号*/
+.diandiandian{width:100%; white-space:nowrap; text-overflow:ellipsis; -o-text-overflow:ellipsis; overflow:hidden;}
+.diandiandian2{ overflow : hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;}
+  .diandiandian3{ overflow : hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;}
+  .diandiandian4{ overflow : hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;}
+.diandiandians{ overflow : hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+   display: -moz-box;
+    -moz-line-clamp: 4!important;
+    -moz-box-orient: vertical;
+}
+
+/*系统消息 交易消息的样式*/
+#message li{height:40px;position: relative;}
+#message input::-moz-placeholder { color: white; }
+#message input:-ms-input-placeholder { color: white; }
+#message input::-webkit-input-placeholder { color: white; }
+#message .white{color:white;}
+#message .bai{background:white;}
+#message .xttz>li{margin-bottom: 5px;}
+#message .jytz>li{margin-bottom: 5px;}
+#message .bais{color:#FFFFFF;}
+#message .huis{color:#999899;}
+#message .heis{color:#4A494B;}

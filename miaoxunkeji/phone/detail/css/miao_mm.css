@@ -1,0 +1,325 @@
+body{
+  width: 100%;
+  /*height: 100%;*/
+  margin: 0 auto;
+}
+
+.containers {
+  min-height: 730px;
+}
+
+.containers > div > img , .containers , .containers > div{
+  width: 100%;
+}
+
+.mid-p > div{
+  padding-left: 4%;
+}
+
+.mid-p > div > p {
+  color: #60B346;
+  font-size: 1.3rem;
+}
+
+.mid-p > div > div {
+  font-size: 1rem;
+}
+
+.mid-p > div {
+  width: 96%;
+}
+
+p > img {
+  position: absolute;
+  right: 4%;
+  width: 12%;
+}
+
+.xx{
+  border-bottom: 1px solid #F2F2F2;
+  border-top: 1px solid #F2F2F2;
+  padding-bottom: 2%;
+}
+
+.xx > div{
+  padding-top: 6%;
+}
+
+.pleft{
+  text-align: left;
+  padding:0 4%;
+}
+
+.pright{
+  text-align: right;
+  padding-right: 5%;
+  color: #49494B;
+  float:right;
+  width:44%;
+}
+
+.cz > div , .mmdz > div{
+  padding-left: 4%;
+}
+
+.cz > div > div{
+  border-bottom: 1px solid rgb(242,242,242);
+  width: 95%;
+  padding-bottom: 4%;
+}
+
+.cz > div > div > img , .cz > div > div > a > img{
+  width: 48%;
+}
+
+.mmdz > div > p{
+  color:rgb(153,152,153);
+  width: 95%;
+}
+/*苗木地址mmdz */
+.mmdz > div > p > span{
+  color:rgb(103,104,104);
+}
+
+/*同场苗木*/
+.tcmm > p{
+  color:rgb(153,152,153);
+  padding-left: 4%;
+}
+
+.allmiao > div > img{
+  width: 82px;
+  height: 145px;
+  float: left;
+}
+
+.allmiao > div {
+  padding-left: 4%;
+  border-top: 1px solid rgb(242,242,242);
+  padding-top: 4%;
+  height: 160px;
+  position: relative;
+}
+
+.allmiao > div > div{
+  padding-left:92.38px;
+}
+
+.biao{
+  font-size: 22px;
+  color: rgb(153,152,153);
+  margin: 0;
+}
+
+.bnei{
+  margin-top: 3%;
+  display: inline-block;
+  font-size: 13px;
+}
+
+.bnei > p {
+  margin: 0 0 2%;
+}
+
+.price {
+  color: rgb(96,179,70);
+  font-size: 20px;
+  margin: 0;
+  position:relative;
+}
+
+.price + span{
+  font-size: 12px;
+  color: rgb(153,152,153);
+}
+
+.biao > span{
+  display: inline-block;
+  background-color: rgb(96,179,70);
+  color: white;
+  font-size: 17px;
+  padding: 1px 4px;
+  margin-left: 1%;
+}
+
+.top {
+  position: relative;
+  margin-top:6%;
+  border-bottom:2px solid rgb(242,242,242);
+  height: 8%;
+  right: 0%;
+}
+
+.bfx {
+  background-color:black;
+  opacity:0;
+  display: none;
+  position: fixed;
+  bottom: 0;
+  border-top: 1px solid rgb(242,242,242);
+  transition: all 0.5s;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+}
+
+.bfx + div {
+  background-color: white;
+  height:50px;
+  padding:5%;
+  position:fixed;
+  bottom:0%;
+  width:100%;
+  border-top: 1px solid rgb(242,242,242);
+  z-index: 2;
+}
+
+.xbian{
+  position: relative;
+  right: 0;
+  transition: all 0.5s;
+  margin-top: 3%;
+}
+
+.xbian > p{
+  margin: 0;
+  font-size: 23px;
+}
+
+.tcmm {
+  padding-bottom: 92.38px;
+}
+
+.fdm + span{
+  width: 36%;
+}
+
+.xf {
+  height: 100%;
+  position:fixed;
+  top:0;
+}
+
+.fxb {
+  width:100%;
+  height: 100%;
+  opacity:0.5;
+  background-color:black;
+}
+
+.fxw{
+  width:100%;
+  height: 40%;
+  background-color:white;
+  position:absolute;
+  transition:all 0.5s;
+  top:100%
+}
+
+.logo {
+  position: absolute;
+  top: -45%;
+  width: 14%;
+  left: 102%;
+}
+
+.logo + a > span{
+  background-color: rgb(38, 156, 136);
+  position: absolute;
+  top: -60%;
+  width: 46%;
+  left: 134%;
+  display: inline-block;
+  padding: 5%;
+  border-radius: 30px;
+  color: white;
+  font-size: 18px;
+  text-align: center;
+}
+
+.cloimg {
+  position: absolute;
+  top: -80%;
+  left: 40%;
+  width: 8%;
+  display: none;
+}
+
+.lname{
+    display: inline-block;
+    width: 49%;
+    text-align: left;
+    color: #999899;
+    margin-bottom: 3%;
+}
+
+.lname + span{
+  display: inline-block;
+  width: 48%;
+  text-align: right;
+  color: rgb(73,73,75);
+  margin-bottom: 3%;
+}
+
+.map{
+  height: 100%;
+  position: absolute;
+  top: 0;
+  z-index: 9;
+  overflow-y: scroll;
+  width:100%;
+}
+
+.map1{
+  height:250px;
+  position:relative;
+  width:100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  width:100% !important;
+  /*height:100%  !important;*/
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.anchorBL{
+  display: none;
+}
+
+/*参考iphone6*/
+@media (min-width:350px) and (max-width:400px){
+  .fdm + span{
+    width: 36%;
+  }
+}
+
+/*参考iphone5*/
+@media (min-width:300px) and (max-width:349px){
+  .fdm + span{
+    width: 36%;
+  }
+  .xbian > p  {
+    margin: 0;
+    font-size: 18px;
+  }
+  .xx > .pleft , .xx > .pright{
+    font-size: 15px;
+  }
+
+  .logo + span {
+    font-size: 15px;
+  }
+}

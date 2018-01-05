@@ -1,0 +1,40 @@
+.paddingright{padding-right:47px;}
+/*个人资料弹出框的css*/
+.czjz{position: absolute;top:50%;-webkit-transform: translateY(-50%);-moz-transform: translateY(-50%);transform: translateY(-50%);}
+/*水平居中*/
+.spjz{position: absolute;left:50%;-webkit-transform: translateX(-50%);-moz-transform: translateX(-50%);transform: translateX(-50%);}
+.margin{margin:0 auto;}
+/*居中*/
+.jz{position: absolute;left:50%;top:50%;-webkit-transform: translate(-50%,-50%);-moz-transform: translate(-50%,-50%);transform: translate(-50%,-50%);}
+
+
+
+a{color:#49494B !important;}
+.gerenziliao>ul>li{
+	padding:0 20px;
+	height:61px;
+	line-height:61px;
+
+	position: relative;
+}
+.gerenziliao>ul>li>img{
+	width:9px;height:14px;right:20px;
+}
+.xian{border-bottom:1px solid #D1D5D5;width:308px;position: absolute;bottom:0;}
+
+.bgs{background:#D1D4D4;}
+.bgF2F2F2{background:#F2F2F2;}
+/*我的苗圃*/
+#head .miaopuk a{width:100%;display: inline-block;}
+.c989898{color:#989898;}
+/*黑色背景的*/
+.heishe{background:#393C3D !important;color:#FEFEFE !important;}
+.baishe{background:white !important;color:#49494B !important;}
+.headerbai{background: url(../tu-me/41.png) no-repeat !important;background-size: 100% 60px !important;color:#FEFEFE !important;}
+.activeg{background: #D1D4D4 !important;}/*cursor: pointer;*/
+.activeg1{background: #242726 !important;cursor: pointer;}
+.huixian{border-top:1px solid #D1D4D4;}
+.baixian{border-top:1px solid #D1D4D4;}
+.overflowy{overflow-y:scroll;overflow-x: hidden;}
+/*.heibg{background:#393C3D !important;}
+.heizt{color:#FEFEFE !important;}*/

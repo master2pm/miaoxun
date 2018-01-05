@@ -1,0 +1,245 @@
+ul, li, ol, dl{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+p {
+  margin: 0;
+}
+body{
+  margin: 0;
+}
+
+.mcxx {
+  padding-left: 5%;
+}
+
+.mcxx > p{
+  color: rgb(96,179,70);
+  font-size: 18px;
+  margin: 5% 0;
+}
+
+.mcxx > p + div {
+  position: relative;
+}
+
+.mcxx > p + div > img{
+  width: 10%;
+  position: absolute;
+  right: 4%;
+  top: 0%;
+}
+
+
+
+span > span {
+  color: rgb(96,179,70);
+
+}
+
+div > span {
+  font-size: 13px;
+}
+
+.top {
+  position: relative;
+  margin-top:6%;
+  border-bottom:2px solid rgb(242,242,242);
+  height: 8%;
+}
+
+.mcxx + div {
+  border-top: 2px solid rgb(242,242,242);
+  border-bottom: 2px solid rgb(242,242,242);
+  margin: 7% 0;
+  margin-left: 5%;
+  width: 90%;
+}
+
+.mcxx + div + div , .bcmm{
+  padding-left: 5%;
+  width: 90%;
+}
+
+.bcmm > div > p{
+  color: rgb(153,152,153);
+  margin: 6% 0;
+  font-size: 16px;
+}
+
+.bcmm > div {
+  border-bottom: 2px solid rgb(242,242,242);
+}
+
+ul > li {
+  display: inline-block;
+  width:48%;
+  height:370px;
+  position: relative;
+  overflow: hidden;
+}
+
+.limg {
+  width:100%;
+  height:66%;
+  margin-bottom: 4%;
+
+}
+
+.limg > img {
+  width: 100%;
+  height: 100%;
+}
+
+.m3{
+  margin-left: 3%;
+}
+
+.mtype{
+  display: inline-block;
+  color: white;
+  background-color: rgb(96,179,70);
+  margin-left: 1%;
+  padding: 0 2%;
+  font-size: 15px;
+}
+
+li > span {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+li > span > img{
+  width: 22%;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.bnei{
+  height:10%;
+}
+
+.bnei > p > span{
+  font-size: 12px;
+  color: rgb(73,73,75);
+}
+
+.price{
+  font-size: 20px;
+  color: rgb(96,179,70);
+  position:relative;
+
+}
+
+.pdz {
+  color:rgb(153,152,153);
+  font-size: 12px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.pdz > span {
+  display: inline-block;
+  position: absolute;
+  right: 3%;
+}
+
+.tsp {
+  position:relative;
+  top: -4px;
+  height: 16px;
+}
+
+.xf {
+  position:fixed;
+  bottom:0%;
+  background-color: white;
+  padding: 4% 0;
+  border-top: 1px solid rgb(242,242,242);
+  left: 0;
+  width: 100%;
+}
+
+.xf > div > a > img , .xf > div > img{
+  width: 44%;
+}
+
+.xf > div > a {
+  padding-right: 3%;
+  margin-left: 4%;
+}
+
+.xbk {
+  position: relative;
+  right: 0%;
+  top: 5px;
+  transition: all 1s;
+}
+
+
+.bfx {
+  background-color:black;
+  height:100%;
+  transition: all 1s;
+  opacity:0.5;
+  position: fixed;
+  width:100%;
+  top: 0;
+  display: none;
+}
+
+.logo {
+  position: absolute;
+  top: -17%;
+  left: 107%;
+}
+
+.logo + a > span{
+  background-color: rgb(38, 156, 136);
+  position: absolute;
+  top: -13%;
+  width: 46%;
+  left: 138%;
+  display: inline-block;
+  padding: 5%;
+  border-radius: 30px;
+  color: white;
+  font-size: 18px;
+  text-align: center;
+}
+
+.cloimg {
+  position: absolute;
+  top: -55%;
+  left: 47%;
+  display: none;
+}
+
+.map{
+  height: 100%;
+  position: absolute;
+  top: 0;
+  z-index: 9;
+  overflow-y: scroll;
+  width:100%;
+}
+
+.map1{
+  height:250px;
+  position:relative;
+}
+
+.containers{
+  min-width: 365px;
+  max-width: 500px;
+  min-height: 730px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.anchorBL{
+  display: none;
+}

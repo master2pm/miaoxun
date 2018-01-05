@@ -1,0 +1,142 @@
+body {
+  margin: 0 auto;
+  padding: 0;
+  width: 100%;
+}
+
+.containers {
+  width: 100%;
+}
+
+.top {
+  position: relative;
+  margin-top:6%;
+  border-bottom:2px solid rgb(242,242,242);
+  height: 8%;
+}
+.top + div > img , .top + div{
+  width:100%;
+}
+
+.top + div > img + div {
+  padding-left: 5%;
+  padding-top: 7%;
+  position:relative;
+  color:rgb(73,73,75);
+  font-size: 22px;
+}
+
+.top + div > img + div > p {
+  margin:0;
+}
+
+.top + div > img + div > img{
+  position:absolute;
+  right:5%;
+  bottom:0;
+  width:12%;
+}
+
+.jlsj {
+  padding-left: 5%;
+  padding-top:5%;
+}
+
+.jlsj > p {
+  color: rgb(153,152,153);
+  font-size: 17px;
+  margin: 0;
+}
+
+.jlsj > span {
+  color: rgb(103,104,104);
+}
+
+.jlsj > span > span {
+  color: rgb(96,179,70);
+}
+
+.qylxr {
+  color: rgb(153,152,153);
+}
+
+/*卖家*/
+.mj {
+  color: rgb(74,73,75);
+}
+
+/*买家*/
+.imj {
+  color: rgb(153,152,153);
+}
+
+.mg0{
+  margin: 0;
+}
+
+.mg7{
+  margin:7% 0;
+}
+
+.xf {
+  position:fixed;
+  bottom:0%;
+  background-color: white;
+  padding: 4% 0;
+  border-top: 1px solid rgb(242,242,242);
+}
+
+.xbk > a > img , .xbk > img{
+  width: 44%;
+}
+
+.xbk > a {
+  padding-right: 3%;
+  margin-left: 4%;
+}
+
+.xbk {
+  position: relative;
+  right: 0%;
+  top: 5px;
+  transition: all 0.5s;
+
+}
+
+.bfx {
+  background-color:black;
+  height:100%;
+  transition: all 0.5s;
+  opacity:0.5;
+  position: fixed;
+  width:100%;
+  top: 0;
+  display: none;
+}
+
+.logo {
+  position: absolute;
+  top: -17%;
+  left: 107%;
+}
+
+.logo + a > span{
+  background-color: rgb(38, 156, 136);
+  position: absolute;
+  top: -13%;
+  width: 46%;
+  left: 138%;
+  display: inline-block;
+  padding: 5%;
+  border-radius: 30px;
+  color: white;
+  font-size: 18px;
+  text-align: center;
+}
+
+.cloimg {
+  position: absolute;
+  top: -55%;
+  left: 47%;
+  display: none;
+}

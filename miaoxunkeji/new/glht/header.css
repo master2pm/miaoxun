@@ -1,0 +1,36 @@
+/*header*/
+#head a{color:#49494B;}
+#head>ul{right:0;}
+#head>ul>li{float: left;padding:0 10px;height:24px;line-height:24px;}
+#head>ul>li>span{width: 20px;height:20px;line-height:20px;border-radius: 50%;color:#EA6000;border:1px solid #EA6000;display: inline-block;text-align: center;}
+/*我的苗圃*/
+#head .miaopuk a{width:100%;display: inline-block;}
+/*登录*/
+.gerenziliao>ul>li{
+  padding:0 20px;
+  height:61px;
+  line-height:61px;
+  position: relative;
+}
+.gerenziliao>ul>li>img{
+  width:9px;height:14px;right:20px;
+}
+.activeg{background: #E3E3E2 !important;cursor: pointer;}
+/*帮助*/
+#bangzhu_kuang{font-size:15px;width:350px;position: absolute;border:1px solid #E4E7E6;background: white}
+
+#bangzhu_kuang .bz2{height:152px;background: #E4E4E3;position: relative;}
+#bangzhu_kuang .bz2 input{color:black;height:71px;width:313px;background: #E4E4E3;padding-left:60px;outline:none;border:1px solid black;border-radius:5px;}
+.bz2 input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { 
+color: black; 
+} 
+.bz2 input:-moz-placeholder, textarea:-moz-placeholder { 
+color: black; 
+} 
+.bz2 input::-moz-placeholder, textarea::-moz-placeholder { 
+color: black; 
+} 
+.bz2 input:-ms-input-placeholder, textarea:-ms-input-placeholder { 
+color: black; 
+} 
+.bgs{background:#E3E3E2;}

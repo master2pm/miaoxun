@@ -1,0 +1,142 @@
+<!DOCTYPE html/>
+<html lang="zh-cn">
+
+<head lang="en">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../friend/share/assets/share.min.css">
+    <link href="../friend/common.css" rel="stylesheet">
+     <link href="../common/common.css" rel="stylesheet">
+    <link href="../friend/index.css" rel="stylesheet">  
+    <link href="../menu/header.css" rel="stylesheet"> 
+     <link rel="stylesheet" href="../../static/layui/css/layui.css"  media="all">
+        <link href="../../static/animate.min.css" rel="stylesheet">
+    <!-- Demo styles -->
+    <style>
+@media screen and (max-width: 1024px) {
+    .bodyFriend {
+       background-size:1024px 450px !important;
+    }
+}
+/*4.固定定位的弹出框样式，透明背景加白色框*/
+.wai_kuang{z-index:2000;display:none;position: fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);}
+.wai_kuangs{z-index:2000;position: fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);}
+.nei_kuang{position: absolute;left:50%;top:50%;-webkit-transform: translate(-50%,-50%);-moz-transform: translate(-50%,-50%);transform: translate(-50%,-50%);}/*字体会因为transform变模糊*/
+.nei_kuang2{margin: auto;  position: absolute;top: 0; left: 0; bottom: 0; right: 0;}/*字体不会因为transform变模糊*/
+
+    </style>
+</head>
+
+<body class="bodyFriend" style="background:url(../tu-menu/21_03.png) no-repeat 0 60px ;background-size:100% 450px;">
+    <!-- Swiper -->
+    <div class="containers " v-cloak>
+     <headers></headers>
+     <div style="width:1024px;margin:0 auto;margin-top:120px;" class=" center" >
+     <!-- 个人头像 -->
+         <img :src="urls==''?'../tu-menu/21_06.png':urls" alt="" style="width:142px;height:142px;border-radius:50%;margin-bottom:30px;">
+         <p class="f30 cF6">邀请您身边的朋友</p>
+         <p class="f16 cF6" style="margin-bottom:30px;margin-top:10px;">邀请您身边的好友加入苗讯的大家庭，安心买卖，和谐共生。</p>
+         <div style="width:770px;height:160px;margin:0 auto;padding:60px 90px;" class="red center border bai" >
+           <div class=" overflow relative" style="height:43px;margin-bottom:20px;">
+               <input  v-model="phone"  placeHolder="输入手机号码" type="text" class="f13 czjz rad none inputborder" style="z-index:1;height:100%;width:535px;left:0;padding:10px;">  
+               <img @click="shares($event)" :src="phone.length==11?'../tu-menu/21_43.png':'../tu-menu/21_47.jpg'" alt="" class="czjz cursor" style="right:0;z-index:2;">
+           </div>
+           <img src="../tu-menu/49.png" alt="" class="" style="margin-bottom:25px;">
+
+<!-- 分享 -->
+           <div class="social-share  relative f13 c808082" data-initialized="true"  style="height:43px;line-height:43px;">
+            <span class="czjz " style="left:0;"> 分享链接： </span>
+            <div style="height:43px;width:340px;left:75px;" class="czjz" >
+               <input id="copys" v-model="copy" type="text" class="czjz rad none inputborder" style="height:100%;width:265px;left:0;padding:10px;">  
+               <img src="../tu-menu/21_68.png" alt="" @click="copys" class="czjz cursor" style="right:0;">
+           </div>
+          
+          
+           <!--qq好友-->
+           <a href="#" class="icon-qq rf" style="right:0;margin:0;width:122px;height:44px;">
+           <img src="../tu-menu/21_59.png" alt="">
+           </a>
+            <!-- 微博 -->
+           <a href="#" class="icon-weibo rf"  style="margin:0;margin-right:10px;width:92px;height:44px;">
+           <img  src="../tu-menu/21_64.png" alt="" >
+           </a>
+            <!-- 微信 -->
+           <a href="#" class="icon-wechat rf" style="margin:0;margin-right:10px;width:92px;height:44px;">
+           <img src="../tu-menu/21_53.png" alt="" >
+           </a>>
+       </div> 
+
+
+
+   </div>
+</div>
+</div>
+
+<script src="../common/jquery-1.11.3.js"></script>
+<script src="https://cdn.bootcss.com/babel-polyfill/6.23.0/polyfill.min.js"></script>
+<script type="text/javascript" src='../friend/share/assets/social-share.min.js'></script>
+<script src="../../static/layui/layui.js"></script>
+<script src="../common/common.js"></script>
+
+<script src="../common/vue2.js"></script>
+<script src="../common/vue-resource.min.js"></script>
+<script src="../common/vue-router.min.js"></script>
+<script src="../common/vuex.min.js"></script>
+<script src="../friend/store.js"></script>
+
+
+<script src="../menu/header.js"></script>
+<script>
+    var vm = new Vue({
+        el: '.containers',
+        data: {
+          phone:'',
+          urls:'',
+          copy:'www.gdmiaoxun.com'
+
+      },
+            //在创建vue实例时，引入路由
+            //  router: router,
+            store: store,
+            components:{"headers":headers},
+            methods: {
+// 发送短信要求
+shares:function(e){
+    if(this.phone.length!=11){
+        return
+    }
+    // 团队/企业 objectId , objectId 为 “0” 时，指定为个人项目
+  $.post(Boss+"group/"+groupId+"/invite",{"mobile":this.phone,'sessiontoken':sessiontoken},function(data){
+   console.log(data)
+   if(data.status==1){
+          //  提示成功发送的弹出框
+
+      }
+  })
+},
+ copys:function(){
+                var Url2=document.getElementById("copys");
+                    Url2.select(); // 选择对象
+                    document.execCommand("Copy"); // 执行浏览器复制命令
+                   //alert("已复制好，可贴粘。");
+             }
+        },
+        mounted: function() {
+            this.urls=common_friend
+        }
+
+    })
+
+
+</script>
+
+</body>
+
+</html>
+
+
+
+
+

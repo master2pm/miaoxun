@@ -1,0 +1,361 @@
+<!DOCTYPE html/>
+<html lang="zh-cn">
+  <head lang="en">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1 , user-scalable=no;">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link href="css/miao_mm.css" rel="stylesheet">
+    <link rel="stylesheet" href="../common/swiper.min.css">
+  </head>
+  <body>
+    <div class="containers" v-cloak>
+      <div>
+      <div class="top">
+        <img src="../tu-phone/1-7.png" style="width:2%;position:absolute;top:32%;left:5%;" @click="back()"/>
+        <img @click="fenxiang()" src="../tu-phone/1-9.png" style="width:7%;position:relative;right: 5%;float: right;margin-left: 10%;"/>
+        <img v-if="false" src="../tu-phone/1-8.png" style="width:8%;position:relative;float: right; bottom: 2px"/>
+      </div>
+      <div>
+        <div class="swiper-container" style="height: 75%;width: 100%;">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide" v-for="(item,index) in tree.mu_photo">
+              <img :src="item.url" style="width: 100%;">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mid-p" @click="go1()">
+        <div>
+          <p>{{wher.results.data[0].mu_ground.gg_name}}</p>
+          <div>
+            <p class="relative" style="margin-top: 0%;color:#49494B">{{tree.mu_ground.group.contacts}}<img  :src="group.type=='group'?'../tu-phone/1-2.png':group.type=='private'?'../tu-phone/1-1.png':'../tu-phone/1-3.png'"></p>
+            <p style="margin-top:1%;color:#676868">回复率：<span>{{group.reply_ratio}}</span>  平均回复时间：<span>{{group.reply_time}}</span></p>
+          </div>
+        </div>
+      </div>
+      <div class="xx" style="width:91%;margin-left:4%;">
+        <div class="pleft">
+          <span class="lname" >发布时间</span>
+          <span>{{tree.createdAt}}</span>
+          <span class="lname" >种植情况</span>
+          <span>{{tree.mu_type}}</span>
+          <span class="lname"  v-if="tree.mu_mj_min">米径</span>
+          <span v-if="tree.mu_mj_min">{{tree.mu_mj_min + 'cm - ' + tree.mu_mj_max + 'cm'}}</span>
+          <span class="lname"  v-if="tree.mu_dj_min">地径</span>
+          <span v-if="tree.mu_dj_min">{{tree.mu_dj_min + 'cm - ' + tree.mu_dj_max + 'cm'}}</span>
+          <span class="lname"  v-if="tree.mu_package_weight">几斤袋</span>
+          <span v-if="tree.mu_package_weight">{{tree.mu_package_weight}}</span>
+          <span class="lname"  v-if="tree.mu_zg_min">自然高</span>
+          <span v-if="tree.mu_zg_min">{{tree.mu_zg_min + 'cm - ' + tree.mu_zg_max + 'cm'}}</span>
+          <span class="lname"  v-if="tree.mu_rg_min">肉高</span>
+          <span v-if="tree.mu_rg_min">{{tree.mu_rg_min + 'cm - ' + tree.mu_rg_max + 'cm'}}</span>
+          <span class="lname"  v-if="tree.mu_zfjg_min">主分枝高</span>
+          <span v-if="tree.mu_zfjg_min">{{tree.mu_zfjg_min + 'cm - ' + tree.mu_zfjg_max + 'cm'}}</span>
+          <span class="lname"  v-if="tree.mu_gf_min">冠幅</span>
+          <span v-if="tree.mu_gf_min">{{tree.mu_gf_min + 'cm - ' + tree.mu_gf_max + 'cm'}}</span>
+          <span class="lname">库存</span>
+          <span>{{tree.mu_stock}}株</span>
+        </div>
+      </div>
+      <div class="cz">
+        <div>
+          <p><span style="color:rgb(153,152,153)">苗圃场联系人 · </span><span style="color:rgb(74,73,75)">{{tree.user.nickname}}</span></p>
+          <div>
+            <a href="tel:1233211234567"><img src="../tu-phone/1-6.png"/></a>
+            <img src="../tu-phone/1-17.png" @click="sx()"/>
+          </div>
+        </div>
+      </div>
+      <div class="mmdz">
+        <div>
+          <p>苗木地址 · <span>{{tree.mu_ground.gg_address.province+tree.mu_ground.gg_address.city+tree.mu_ground.gg_address.detail_address.replace(tree.mu_ground.gg_address.province,'').replace(tree.mu_ground.gg_address.city,'')}}</span></p>
+        </div>
+      </div>
+      <div :class="{map1:fangmap==false,map:fangmap!=false}" @click="!fangmap && bianda()" style="width: 100%;">
+        <div v-if="fangmap" style="position:absolute;z-index:1;color:white;padding:3%;background-color:black;opacity:0.4;width:94%;">{{tree.mu_ground.gg_address.province+"，"+tree.mu_ground.gg_address.city+"，"+tree.mu_ground.gg_address.detail_address.replace(tree.mu_ground.gg_address.province,'').replace(tree.mu_ground.gg_address.city,'')}}</div>
+        <span @click="fangmap && bianda()" v-if="fangmap" style="position: absolute;bottom: 5%;right: 5%;background-color: rgb(38, 156, 136);color: white;border-radius: 40px;z-index: 2;font-size: 26px;padding: 4% 14%;">返回</span>
+        <div class="relative" style="height:100%">
+          <div class="relative" style="height:100%;">
+            <div id="map_canvas"  class=" relative" style="height:100%;">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tcmm">
+        <p v-if="wher.results.data.length>1">同场苗木</p>
+        <div class="allmiao">
+          <div v-if="item.objectId!=nowid" v-for="(item,index) in wher.results.data" @click="go(item.objectId)">
+            <img :src="item.mu_photo[0].url"/>
+            <div>
+              <div style="min-height: 65%;">
+                <p class="biao">{{item.mu_name}}<span>{{item.mu_type.substring(0,1)}}</span></p>
+                <span class="bnei">
+                  <p v-if="item.mu_mj_min || item.mu_zg_max">
+                    <span v-if="item.mu_mj_min">{{'米径' + item.mu_mj_min + '-' + item.mu_mj_max}}</span>
+                    <span v-if="item.mu_zg_min && item.mu_mj_max"> · </span><span v-if="item.mu_zg_min">{{' 自然高' + item.mu_zg_min + '-' + item.mu_zg_max}}</span>
+                  </p>
+                  <p v-if="item.mu_rg_min || item.mu_zfjg_max">
+                    <span v-if="item.mu_rg_min">{{'肉高' + item.mu_rg_min + '-' + item.mu_rg_max}}</span>
+                    <span v-if="item.mu_rg_min && item.mu_zfjg_max"> · </span>
+                    <span v-if="item.mu_zfjg_max">{{'主分枝高' + item.mu_zfjg_min + '-' + item.mu_zfjg_max}}</span>
+                  </p>
+                  <p>
+                    <span v-if="item.mu_gf_min">{{'冠幅' + item.mu_gf_min + '-' + item.mu_gf_max}}</span>
+                  </p>
+                </span>
+              </div>
+              <div>
+                <p class="price">￥{{item.mu_price!=-1?item.mu_price+ '/株' : '面议'}}
+                  <span style="font-size: 12px;text-align: right;display: inline-block;width: 90px;position:absolute;bottom:0;right:5%;">
+                    <span style="display: inline-block;color:rgb(153,152,153);">单位：cm</span>
+                    <span style="color:rgb(96,179,70);display: inline-block;">库存{{item.mu_stock}}株</span>
+                  </span>
+                </p>
+                <span>{{item.mu_province.substring(0,item.mu_province.length-1) + ' · ' + item.mu_city.substring(0,item.mu_city.length-1) + ' · ' + item.mu_ground.gg_name.substring(item.mu_ground.gg_name.indexOf('市')+1)}}</span>
+              </div>
+            </div>
+            <div style="position:absolute;right:3%;bottom:25%;font-size:12px">
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bfx"></div>
+
+      <div>
+        <img class="cloimg" src="../tu-phone/1-15.png" style="width:8%;" @click="fenxiang()">
+        <div class="xbian">
+          <p>{{tree.mu_name}}<span class="fdm" style="color: white;background-color: rgb(96,179,70);font-size: 20px;padding:0 1%;margin-left:1%;">{{tree.mu_type.substring(0,1)}}</span><span style="color: rgb(96,179,70);display: inline-block;text-align: right;position:absolute;right:10%;">￥{{tree.mu_price!=-1?tree.mu_price + '/株':'面议'}}</span></p>
+          <img class="logo" src="../tu-phone/1-16.png"/>
+          <a style="padding-right:0%;margin-left:0%;" href="http://gdmiaoxun.com/new/parent/index.html#/downloads" target="_blank"><span>下载客户端立即分享</span></a>
+        </div>
+
+      </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+    <script src="../common/jquery-1.11.3.js"></script>
+    <script src="../common/common.js"></script>
+    <script src="../common/vue2.js"></script>
+    <script src="../common/vue-resource.min.js"></script>
+    <script src="../common/vue-router.min.js"></script>
+    <script src="../common/vuex.min.js"></script>
+    <script src="../common/swiper.jquery.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=KZxQqurmyCavxkXspzzPjcnaljsWUiEA"></script>
+    <script src="../friend/store.js"></script>
+
+    <script>
+    var vm = new Vue({
+      el: '.containers',
+      data: {
+        tree:'',
+        wher:'',
+        group:'',
+        nowid:'',
+        mcid:'',
+        map:'',
+        fangmap:false,//放大地图
+        bfx:true//分享
+      },
+      store: store,
+      components:{},
+      methods:{
+        // 放回
+        back:function(){
+          window.history.back();
+        },
+        yi:function(){
+            $("body").scrollTop(1100);
+        },
+        // 跳转至指定苗木
+        go:function(mm){
+          var that = this;
+          var dz = location.href;
+          var test = dz.substring(0,dz.indexOf("detail")) + 'detail/miao_mm.html?mid=' + that.mcid.groundId  + "&cid=" + mm;
+          location.href= test;
+
+        },
+        // 跳转至苗圃场
+        go1:function(){
+          var that = this;
+          var dz = location.href;
+          var test = dz.substring(0,dz.indexOf("detail")) + 'detail/miao_mpc.html?id=' + that.mcid.groundId;
+          location.href= test;
+        },
+
+        changemap:function(bool){
+          var that = this;
+          if(bool){
+            that.map.enableDragging();
+          }else{
+            that.map.disableDragging();
+          }
+        },
+        check:function(){
+          var browser = {
+          versions: function() {
+            var u = navigator.userAgent;
+            return {
+                    trident: u.indexOf('Trident') > -1, //IE内核
+                    presto: u.indexOf('Presto') > -1, //opera内核
+                    webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                    gecko: u.indexOf('Firefox') > -1, //火狐内核Gecko
+                    mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+                    ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios
+                    android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android
+                    iPhone: u.indexOf('iPhone') > -1 , //iPhone
+                    iPad: u.indexOf('iPad') > -1, //iPad
+                    webApp: u.indexOf('Safari') > -1 //Safari
+                    };
+                }()
+            }
+        },
+        // 分享
+        fenxiang:function(){
+          var that = this;
+          if($('.xbian').css('right') == '0px'){
+            $(".xbian").css({'right':'100%'});
+            $(".bfx").css({'display':'block'});
+            $(".cloimg").css({'display':'inline-block'})
+            console.log($(".cloimg").css('display'))
+            setTimeout(function(){
+              $(".bfx").css({'opacity':'0.5'});
+            },1)
+          }else{
+            $(".xbian").css({'right':'0%'});
+            $(".bfx").css({'opacity':'0'});
+            $(".cloimg").css({'display':'none'});
+            setTimeout(function(){
+              $(".bfx").css({'display':'none'});
+            },1000)
+          }
+        },
+        // 私信
+        sx:function(){
+          alert("私信")
+        },
+
+        // 判断是否微信浏览器
+        isWechat:function(){
+          var ua = navigator.userAgent.toLowerCase();
+          if(ua.match(/MicroMessenger/i)=="micromessenger"){
+
+            return true;
+          }
+          else{
+            return false;
+          }
+        },
+        // 点击地图放大
+        bianda:function(){
+          console.log('地图放大')
+          var that = this;
+          if(!that.fangmap){
+            $("body").css({"overflow-y":"hidden"});
+            $("body").scrollTop(0);
+            that.changemap(true);
+          }else{
+            $("body").css({"overflow-y":"auto"});
+            $("body").scrollTop(1000);
+            that.changemap(false);
+          }
+          setTimeout(function(){
+            that.fangmap = !that.fangmap;
+          },10)
+          setTimeout(function(){
+            that.remap()
+          },200);
+
+        },
+        // 地图位置居中
+        remap:function(){
+          var that = this;
+          var initLat = that.tree.mu_ground.gg_address.point.latitude;
+          var initLng = that.tree.mu_ground.gg_address.point.longitude;
+          var point = new BMap.Point(initLng, initLat);  // 创建点坐标
+          that.map.centerAndZoom(point, 17);
+        }
+      },
+      mounted:function(){
+        // 通过苗圃场ID查所有苗木 再从所有苗木找出 id相同的苗木
+        var that = this;
+        var di = location.search;
+        $(".containers > div").css({"display":"none"});
+        console.log($(".containers > div"))
+        // 苗场id mid
+        that.mcid = {groundId: di.substring(di.indexOf('mid=') + 4,di.indexOf('&c'))};
+        console.log(that.mcid)
+
+        //苗木id cid
+        var mmid = di.substring(di.indexOf('cid=')+4 ,di.indexOf('cid=') + 28)
+        console.log(mmid)
+        if(that.mcid.groundId.length<24 || that.mcid.groundId == null){
+          that.mcid = {groundId: "59db3ad39545040067f21ec6"};
+        }
+        if(mmid.length<24 || mmid == null){
+          mmid = "59df135a1b69e60040da1037";
+        }
+        $.get(this.$store.state.Boss+"/tree?where="+encodeURI(JSON.stringify(that.mcid)) + '&limit=300',function(data){
+          that.wher = data;
+          console.log(data)
+          $(data.results.data).each(function(index,item){
+            if(item.objectId == mmid){
+              that.tree = item;
+              that.group = item.mu_ground.group
+              that.nowid = item.objectId;
+              return;
+            }
+          })
+        });
+        if(that.tree == null || that.tree == ''){
+          alert("error");
+        }
+        setTimeout(function(){
+            that.map = new BMap.Map("map_canvas");          // 创建地图实例
+            var initLat = that.tree.mu_ground.gg_address.point.latitude;
+            var initLng = that.tree.mu_ground.gg_address.point.longitude;
+
+            console.log("缓存获取坐标")
+            console.log(initLat,initLng)
+            var point = new BMap.Point(initLng, initLat);  // 创建点坐标
+            that.map.centerAndZoom(point, 17);                 // 初始化地图，设置中心点坐标和地图级别
+            // that.map.enableScrollWheelZoom();                            // 启用滚轮放大缩小
+            var mk = new BMap.Marker(point);
+            var myIcon = new BMap.Icon("../tu-phone/1-68.png", new BMap.Size(29,37));
+            mk = new BMap.Marker(point,{icon:myIcon});
+            that.map.addOverlay(mk);//把点添加到地图上
+            that.map.disableDragging();
+        },10)
+        console.log(that.tree)
+
+        // alert(window.navigator.userAgent)
+        setTimeout(function(){
+          var swiper = new Swiper('.swiper-container', {
+            pagination: '.swiper-pagination',
+            slidesPerView: 'auto',
+            paginationClickable: true,
+            spaceBetween: 20,
+            initialSlide :0,
+            autoplay: 2000,
+            observer:true,//修改swiper自己或子元素时，自动初始化swiper
+            observeParents:true//修改swiper的父元素时，自动初始化swiper
+          });
+        },100);
+        $.get("http://m1-ymboss.leanapp.cn/addon/iOS/version?from=client",function(data){
+          console.log(data)
+        });
+      }
+    })
+
+    </script>
+   </body>
+</html>

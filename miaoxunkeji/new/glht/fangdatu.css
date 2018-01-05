@@ -1,0 +1,24 @@
+
+/*发大图的切换*/
+#fada_kuang{overflow:hidden;}
+#fada{position: absolute;top:0;left:0;height:98px;width: auto;}
+#fada li{overflow: hidden;float:left;background:#fff;width:72px;height:97px;margin-right:13px;padding: 1px}
+#fada li img{cursor: url("../tubiao/YKMX-final-42.png"), auto}
+#fada>li:hover{border: 1px solid #F16722;padding: 0px}
+.final_tb{
+  overflow: hidden;
+}
+.final_tb img{
+  margin-right: 10px;
+  cursor: pointer;
+}
+#final_fd{
+  cursor: pointer;
+}
+/*fangdatu*/
+#mymapa > div.zybian.carousel-inner > div.active.item > img{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}
